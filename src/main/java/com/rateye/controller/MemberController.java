@@ -27,9 +27,9 @@ import com.rateye.service.MemberService;
  *  ------------   --------    ---------------------------
  *   2021.06.29     박진훈          최초 생성
  *
- * Copyright (C) 2009 by MOPAS  All right reserved.
+ * Copyright (C) 2021 by Rateye  All right reserved.
  * </pre>
- * @since 2021.04.06
+ * @since 2021.06.29
  */
 
 @Controller

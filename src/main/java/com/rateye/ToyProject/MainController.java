@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *  ------------   --------    ---------------------------
  *   2021.04.06     박진훈          최초 생성
  *
- * Copyright (C) 2009 by MOPAS  All right reserved.
+ * Copyright (C) 2021 by Rateye  All right reserved.
  * </pre>
  * @since 2021.04.06
  */
@@ -35,5 +35,38 @@ public class MainController {
         System.out.println("MainController - main() :: GET");
 
         return StrResources.MAIN_PAGE;
+    }
+
+    /**
+     * 리펙토링 TOP 페이지
+     * @return "/include/top"
+     */
+    @RequestMapping(value = "/inc/top", method = RequestMethod.GET)
+    public String top() {
+        System.out.println("MainController - top() :: GET");
+
+        return StrResources.TOP_PAGE;
+    }
+
+    /**
+     * 리펙토링 HEADER 페이지
+     * @return "/include/header"
+     */
+    @RequestMapping(value = "/inc/header", method = RequestMethod.GET)
+    public String header() {
+        System.out.println("MainController - header() :: GET");
+
+        return StrResources.HEADER_PAGE;
+    }
+
+    /**
+     * 리펙토링 BOTTOM 페이지
+     * @return "/include/bottom"
+     */
+    @RequestMapping(value = "/inc/bottom", method = RequestMethod.GET)
+    public String bottom() {
+        System.out.println("MainController - bottom() :: GET");
+
+        return StrResources.BOTTOM_PAGE;
     }
 }
