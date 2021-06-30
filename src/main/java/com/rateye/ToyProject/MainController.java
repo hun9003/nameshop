@@ -4,6 +4,7 @@ import com.rateye.util.StrResources;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 메인 페이지 컨트롤러 클래스

@@ -110,7 +110,7 @@
     <!-- end revolution slider -->
     <!-- start section -->
     <section id="down-section" class="p-0">
-        <div class="container-fluid">
+        <div id="intro" class="container-fluid">
             <div class="row">
                 <div class="col-12 col-lg-2 col-md-4 d-flex flex-column justify-content-center border-right border-color-light-gray p-0 sm-h-400px sm-no-border-all wow animate__fadeIn">
                     <div class="content-box-image cover-background overflow-visible position-relative" style="background-image: url('<c:url value="/resources/images/banner-art3.png"/>');">
@@ -131,7 +131,7 @@
     <!-- end section -->
     <!-- start section -->
     <section class="big-section bg-light-gray">
-        <div class="container">
+        <div id="plan" class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6 text-center margin-8-rem-bottom lg-margin-6-rem-bottom sm-margin-5-rem-bottom wow animate__fadeIn">
                     <span class="alt-font font-weight-500 text-medium-gray text-uppercase d-block margin-10px-bottom letter-spacing-1px"><spring:message code="label.home.plan.title"/></span>

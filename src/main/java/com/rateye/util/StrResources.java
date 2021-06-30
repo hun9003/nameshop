@@ -29,7 +29,10 @@ public class StrResources {
     public static final String TOP_PAGE = "/include/top"; // 리팩토링 페이지 TOP
     public static final String HEADER_PAGE = "/include/header"; // 리팩토링 페이지 TOP
     public static final String BOTTOM_PAGE = "/include/bottom"; // 리팩토링 페이지 TOP
+    
+    public static final String LOGIN_PAGE = "/member/login"; // 로그인 페이지
 
+    public static final String CONTENT_WRITE_PAGE = "/pages/content-write"; // 이름 추천 하기 페이지
 //    =====================================  [   Page End   ]   =====================================
 
     public static boolean CHECK_LOGIN(HttpSession session) {

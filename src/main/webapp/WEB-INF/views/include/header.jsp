@@ -30,57 +30,47 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav alt-font">
                         <li class="nav-item dropdown megamenu">
-                            <a href="#" class="nav-link">Home</a>
+                            <a href="<c:url value="/"/>" class="nav-link">HOME</a>
+                        </li>
+                        <li class="nav-item dropdown simple-dropdown">
+                            <a href="#" class="nav-link">사이트안내</a>
                             <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
-                            <div class="menu-back-div dropdown-menu megamenu-content" role="menu">
-                                <div class="d-lg-flex justify-content-center">
-                                    <ul class="d-lg-inline-block">
-                                        <li class="dropdown-header">Corporate</li>
-
-                                    </ul>
-                                    <ul class="d-lg-inline-block">
-                                        <li class="dropdown-header">Specialized</li>
-
-                                    </ul>
-                                    <ul class="d-lg-inline-block">
-                                        <li class="dropdown-header">Portfolio</li>
-
-                                    </ul>
-                                    <ul class="d-lg-inline-block">
-                                        <li class="dropdown-header">Other</li>
-
-                                    </ul>
-                                </div>
-                            </div>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown"><a href="javascript:void(0);" onclick="location.href = '<c:url value="/"/>#intro'">사이트소개</a></li>
+                                <li class="dropdown"><a href="javascript:void(0);" onclick="location.href = '<c:url value="/"/>#plan'">이용안내</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item dropdown simple-dropdown">
-                            <a href="#" class="nav-link">Pages</a>
-                        </li>
-                        <li class="nav-item dropdown simple-dropdown">
-                            <a href="#" class="nav-link">Portfolio</a>
-                        </li>
-                        <li class="nav-item dropdown megamenu">
-                            <a href="javascript:void(0);" class="nav-link">Elements</a>
+                            <a href="#" class="nav-link">컨텐츠</a>
                             <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" href="javascript:void(0);">이름 추천 신청</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" href="javascript:void(0);">이름 추천 하기</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item dropdown simple-dropdown">
-                            <a href="#" class="nav-link">Features</a>
-                        </li>
-                        <li class="nav-item dropdown simple-dropdown">
-                            <a href="#" class="nav-link">Blog</a>
-
-                        </li>
-                        <li class="nav-item dropdown megamenu">
-                            <a href="javascript:void(0);" class="nav-link">Shop</a>
+                            <a href="#" class="nav-link">고객지원</a>
+                            <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" href="javascript:void(0);">이용 문의</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" href="javascript:void(0);">Q&amp;A</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-auto col-lg-2 text-right hidden-xs px-lg-0">
                 <div class="header-social-icon d-inline-block">
-                    <a href="http://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="http://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="http://www.facebook.com"><i class="fas fa-user"></i></a>
+                    <a href="<c:url value="/login"/>"><i class="fas fa-sign-in-alt"></i></a>
                 </div>
             </div>
         </div>
