@@ -11,7 +11,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!-- start header -->
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent header-light fixed-top navbar-boxed header-reverse-scroll">
+    <nav class="navbar top-space navbar-expand-lg navbar-light bg-transparent header-light fixed-top navbar-boxed header-reverse-scroll">
         <div class="container-fluid nav-header-container">
             <div class="col-5 col-lg-2 pl-lg-0 mr-auto mr-lg-0">
                 <a class="navbar-brand" href="<c:url value="/"/>">
@@ -30,37 +30,37 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav alt-font">
                         <li class="nav-item dropdown megamenu">
-                            <a href="<c:url value="/"/>" class="nav-link">HOME</a>
+                            <a href="<c:url value="/"/>" class="nav-link"><spring:message code="menu.home"/></a>
                         </li>
                         <li class="nav-item dropdown simple-dropdown">
-                            <a href="#" class="nav-link">사이트안내</a>
+                            <a href="#" class="nav-link"><spring:message code="menu.menu1"/></a>
                             <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                             <ul class="dropdown-menu" role="menu">
-                                <li class="dropdown"><a href="javascript:void(0);" onclick="location.href = '<c:url value="/"/>#intro'">사이트소개</a></li>
-                                <li class="dropdown"><a href="javascript:void(0);" onclick="location.href = '<c:url value="/"/>#plan'">이용안내</a></li>
+                                <li class="dropdown"><a href="javascript:void(0);" onclick="location.href = '<c:url value="/"/>#intro'"><spring:message code="menu.menu1.item1"/></a></li>
+                                <li class="dropdown"><a href="javascript:void(0);" onclick="location.href = '<c:url value="/"/>#plan'"><spring:message code="menu.menu1.item2"/></a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown simple-dropdown">
-                            <a href="#" class="nav-link">컨텐츠</a>
+                            <a href="#" class="nav-link"><spring:message code="menu.menu2"/></a>
                             <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                             <ul class="dropdown-menu" role="menu">
                                 <li class="dropdown">
-                                    <a data-toggle="dropdown" href="javascript:void(0);">이름 추천 신청</a>
+                                    <a data-toggle="dropdown" href="javascript:void(0);" onclick="location.href = '<c:url value="/write"/>'"><spring:message code="menu.menu2.item1"/></a>
                                 </li>
                                 <li class="dropdown">
-                                    <a data-toggle="dropdown" href="javascript:void(0);">이름 추천 하기</a>
+                                    <a data-toggle="dropdown" href="javascript:void(0);" onclick="location.href = '<c:url value="/list"/>'"><spring:message code="menu.menu2.item2"/></a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown simple-dropdown">
-                            <a href="#" class="nav-link">고객지원</a>
+                            <a href="<c:url value="/help"/>" class="nav-link"><spring:message code="menu.menu3"/></a>
                             <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown" aria-hidden="true"></i>
                             <ul class="dropdown-menu" role="menu">
                                 <li class="dropdown">
-                                    <a data-toggle="dropdown" href="javascript:void(0);">이용 문의</a>
+                                    <a data-toggle="dropdown" href="javascript:void(0);" onclick="location.href = '<c:url value="/help"/>#down-section'"><spring:message code="menu.menu3.item1"/></a>
                                 </li>
                                 <li class="dropdown">
-                                    <a data-toggle="dropdown" href="javascript:void(0);">Q&amp;A</a>
+                                    <a data-toggle="dropdown" href="javascript:void(0);" onclick="location.href = '<c:url value="/help"/>#qna'"><spring:message code="menu.menu3.item2"/></a>
                                 </li>
                             </ul>
                         </li>
@@ -69,7 +69,7 @@
             </div>
             <div class="col-auto col-lg-2 text-right hidden-xs px-lg-0">
                 <div class="header-social-icon d-inline-block">
-                    <a href="http://www.facebook.com"><i class="fas fa-user"></i></a>
+                    <a href="<c:url value="/my"/>"><i class="fas fa-user"></i></a>
                     <a href="<c:url value="/login"/>"><i class="fas fa-sign-in-alt"></i></a>
                 </div>
             </div>

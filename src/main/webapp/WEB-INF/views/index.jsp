@@ -123,7 +123,6 @@
                     <span class="alt-font font-weight-500 text-medium-gray text-uppercase d-block margin-30px-bottom"><spring:message code="label.home.intro"/></span>
                     <h4 class="alt-font font-weight-600 text-extra-dark-gray letter-spacing-minus-2px margin-3-rem-bottom"><spring:message code="contnet.home.intro1"/></h4>
                     <p class="w-90 xl-w-100"><spring:message code="contnet.home.intro2"/></p>
-                    <a href="about-us.html" class="btn btn-fancy btn-box-shadow btn-medium btn-dark-gray align-self-start margin-25px-top"><spring:message code="button.home.showDetail"/></a>
                 </div>
             </div>
         </div>
@@ -214,7 +213,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center margin-8-rem-top lg-margin-6-rem-top md-margin-6-rem-top sm-margin-4-rem-top wow animate__fadeIn">
-                    <a href="contact-us-simple.html" class="btn btn-fancy btn-large btn-white btn-box-shadow"><spring:message code="button.home.start"/></a>
+                    <a href="<c:url value="/write"/>" class="btn btn-fancy btn-large btn-white btn-box-shadow"><spring:message code="button.home.start"/></a>
                 </div>
             </div>
         </div>

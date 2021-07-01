@@ -1,0 +1,29 @@
+.subject-text-overflow {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+}
+
+.content-text-overflow {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+
+}
+
+.profile-card-content dt {
+    float: left;
+    width: 40%;
+    padding-top: 10px;
+}
+
+.profile-card-content dd {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    padding-top: 10px;
+}

@@ -31,8 +31,12 @@ public class StrResources {
     public static final String BOTTOM_PAGE = "/include/bottom"; // 리팩토링 페이지 TOP
     
     public static final String LOGIN_PAGE = "/member/login"; // 로그인 페이지
+    public static final String PROFILE_PAGE = "/member/profile"; // 프로필 페이지
 
     public static final String CONTENT_WRITE_PAGE = "/pages/content-write"; // 이름 추천 하기 페이지
+    public static final String CONTENT_LIST_PAGE = "/pages/content-list"; // 이름 추천 리스트 페이지
+    public static final String CONTACT_PAGE = "/pages/contact"; // 고객 지원 페이지
+
 //    =====================================  [   Page End   ]   =====================================
 
     public static boolean CHECK_LOGIN(HttpSession session) {

@@ -48,5 +48,29 @@ public class ContentController {
         return StrResources.CONTENT_WRITE_PAGE;
     }
 
+    /**
+     * 이름 추천 리스트 페이지
+     * @param session 세션
+     * @param model 뷰에 전달할 객체
+     * @return "/pages/content-list"
+     */
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(HttpSession session, Model model) {
+        System.out.println("ContentController - list() :: GET");
 
+        return StrResources.CONTENT_LIST_PAGE;
+    }
+
+    /**
+     * 고객 지원 페이지
+     * @param session 세션
+     * @param model 뷰에 전달할 객체
+     * @return "/pages/contact"
+     */
+    @RequestMapping(value = "/help", method = RequestMethod.GET)
+    public String help(HttpSession session, Model model) {
+        System.out.println("ContentController - help() :: GET");
+
+        return StrResources.CONTACT_PAGE;
+    }
 }

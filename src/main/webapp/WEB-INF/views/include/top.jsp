@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/theme-vendors.min.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/responsive.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/custom.css"/>" />
     <!-- revolution slider -->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/revolution/css/settings.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/revolution/css/layers.css"/>">

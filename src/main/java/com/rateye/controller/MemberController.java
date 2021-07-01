@@ -54,5 +54,16 @@ public class MemberController {
         return StrResources.LOGIN_PAGE;
     }
 
+    /**
+     * 프로필 페이지
+     * @param session 세션
+     * @param model 뷰에 전달할 객체
+     * @return "/member/login"
+     */
+    @RequestMapping(value = "/my", method = RequestMethod.GET)
+    public String profile(HttpSession session, Model model) {
+        System.out.println("MemberController - profile() :: GET");
 
+        return StrResources.PROFILE_PAGE;
+    }
 }
