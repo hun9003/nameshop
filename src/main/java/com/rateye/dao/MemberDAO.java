@@ -1,6 +1,7 @@
 package com.rateye.dao;
 
 
+import com.rateye.domain.MemberAuthEmailBean;
 import com.rateye.domain.MemberBean;
 
 /**
@@ -25,4 +26,16 @@ import com.rateye.domain.MemberBean;
 public interface MemberDAO {
 
     int insertMember(MemberBean memberBean);
+
+    MemberAuthEmailBean getMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean);
+
+    int createMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean);
+
+    int updateMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean);
+
+    MemberAuthEmailBean checkMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean);
+
+    int updateMemberEmailCert(MemberBean memberBean);
+
+    int useMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean);
 }

@@ -60,16 +60,33 @@
                         <div id="join-tab" class="tab-pane fade in">
                             <div class="col-12 col-xl-12 lg-padding-30px-lr md-padding-15px-lr sm-margin-40px-bottom">
                                 <h6 class="alt-font font-weight-500 text-extra-dark-gray"><spring:message code="label.member.join"/></h6>
-                                <form action ="<c:url value="/join"/>" method="post" class="bg-light-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all">
+                                <form action ="<c:url value="/join"/>" method="post" class="bg-light-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all" onsubmit="return false">
                                     <label class="margin-15px-bottom" for="join-name"><spring:message code="label.member.name"/> <span class="required-error text-radical-red">*</span></label> <span id="join-name-msg" class="float-right"></span>
                                     <input id="join-name" class="small-input bg-white margin-20px-bottom required" type="text" name="mem_name" placeholder="Enter your username" required>
                                     <label class="margin-15px-bottom" for="join-email"><spring:message code="label.member.email"/> <span class="required-error text-radical-red">*</span></label>  <span id="join-email-msg" class="float-right"></span>
-                                    <input id="join-email" class="small-input bg-white margin-20px-bottom required" type="email" name="mem_email" placeholder="Enter your email" required>
+                                    <input id="join-email" class="small-input bg-white margin-20px-bottom required" type="text" name="mem_email" placeholder="Enter your email" required>
                                     <label class="margin-15px-bottom" for="join-password"><spring:message code="label.member.password"/> <span class="required-error text-radical-red">*</span></label>  <span id="join-password-msg" class="float-right"></span>
                                     <input id="join-password" class="small-input bg-white margin-20px-bottom required" type="password" name="mem_password" placeholder="Enter your password" required>
                                     <p class="text-small"><spring:message code="content.member.policy"/></p>
-                                    <button class="btn btn-medium btn-fancy btn-dark-gray w-100 submit" type="submit"><spring:message code="button.member.join"/></button>
+                                    <input type="hidden" id="join-email-ready" value="0">
+                                    <input type="hidden" id="join-name-ready" value="0">
+                                    <input type="hidden" id="join-password-ready" value="0">
+                                    <button id="join-btn" class="btn btn-medium btn-fancy btn-dark-gray w-100" type="button" onclick="doJoin()"><spring:message code="button.member.join"/></button>
                                 </form>
+                                <!-- start email_code form -->
+                                <a id="email-code-form-btn" href="#email-code-form" class="hide popup-with-form"></a>
+                                <form id="email-code-form" action="" method="post" class="white-popup-block col-xl-4 col-lg-7 col-sm-9 p-0 mx-auto mfp-hide">
+                                    <div class="padding-fifteen-all bg-white border-radius-6px xs-padding-six-all">
+                                        <h6 class="text-extra-dark-gray font-weight-500 margin-35px-bottom xs-margin-15px-bottom"><spring:message code="content.member.email.subject"/></h6>
+                                        <div>
+                                            <p><spring:message code="content.member.email.code"/></p>
+                                            <input id="email_code" class="medium-input margin-25px-bottom xs-margin-10px-bottom required" type="text" name="code" maxlength="6" placeholder="<spring:message code="label.member.code"/>">
+                                            <div id="code-loader" class=""></div>
+                                            <div class="form-results d-none"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- end email_code form -->
                             </div>
                         </div>
                         <!-- end tab item 회원가입 폼 -->
@@ -84,11 +101,14 @@
 
 <c:import url="/inc/bottom"/>
 <script>
+    const join_email = $('#join-email');
+    const join_name = $('#join-name');
+    const join_password = $('#join-password');
+    const mail_code = $('#email_code');
     $(document).ready(function () {
-        const join_email = $('#join-email');
-        const join_name = $('#join-name');
-        const join_password = $('#join-password');
         join_email.keyup(function(){
+            let ready = $('#join-email-ready');
+            ready.val('0');
             let result = getEmailResult(join_email.val());
             let msg_box = $('#join-email-msg')
             switch (result) {
@@ -106,10 +126,13 @@
                     join_email.attr('class','small-input bg-white margin-20px-bottom required border-success');
                     msg_box.attr('class','float-right text-success');
                     msg_box.html('<spring:message code="msg.form.email.success"/>');
+                    ready.val('1');
                     break;
             }
         })
         join_name.keyup(function(){
+            let ready = $('#join-name-ready');
+            ready.val('0');
             let result = getNameResult(join_name.val());
             let msg_box = $('#join-name-msg')
             switch (result) {
@@ -127,10 +150,13 @@
                     join_name.attr('class','small-input bg-white margin-20px-bottom required border-success');
                     msg_box.attr('class','float-right text-success');
                     msg_box.html('<spring:message code="msg.form.name.success"/>');
+                    ready.val('1');
                     break;
             }
         })
         join_password.keyup(function(){
+            let ready = $('#join-password-ready');
+            ready.val('0');
             let result = getPasswordResult(join_password.val());
             let msg_box = $('#join-password-msg');
             switch (result) {
@@ -143,24 +169,29 @@
                     join_password.attr('class','small-input bg-white margin-20px-bottom required border-warning');
                     msg_box.attr('class','float-right text-warning');
                     msg_box.html('<spring:message code="msg.form.password.warning"/>');
+                    ready.val('1');
                     break;
                 case 'success':
                     join_password.attr('class','small-input bg-white margin-20px-bottom required border-success');
                     msg_box.attr('class','float-right text-success');
                     msg_box.html('<spring:message code="msg.form.password.success"/>');
+                    ready.val('1');
                     break;
             }
+        })
+        mail_code.keyup(function (){
+            mail_check();
         })
     });
 
     function getEmailResult(email) {
-        let emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        let emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
         if(!emailRule.test(email)) {
             // 경고
             return 'invalid';
-        } else if(email === 'hun9003@naver.com') {
-            return 'duplicate'
+        } else if(email === '') {
+            return 'duplicate';
         } else {
             return 'success';
         }
@@ -171,8 +202,8 @@
         if(!nameRule.test(name)) {
             // 경고
             return 'invalid';
-        } else if(name === '찌눈') {
-            return 'duplicate'
+        } else if(name === '') {
+            return 'duplicate';
         } else {
             return 'success';
         }
@@ -188,6 +219,64 @@
             return 'warning';
         } else {
             return 'danger';
+        }
+    }
+
+    function doJoin() {
+        if ($('#join-name-ready').val() === '0') {
+            join_name.focus();
+            return false;
+        } else if ($('#join-email-ready') === '0') {
+            join_email.focus();
+            return false;
+        } else if ($('#jjoin-password') === '0') {
+            join_password.focus();
+            return false;
+        } else {
+            $('#email').html($('#join-email').val());
+            $('#join-btn').addClass('loading');
+            send_mail();
+        }
+    }
+
+    function send_mail(){
+        let url = '<c:url value="/sendMail"/>';
+        let mem_email = $('#join-email').val();
+        $.ajax(url,{
+            data:{mem_email:mem_email},
+            success:function(data) {
+                if(data=='result') {
+                    $('#join-btn').removeClass('loading');
+                    $('#email-code-form-btn').click();
+                }
+            }
+        })
+    }
+
+    function mail_check(){
+        let url = '<c:url value="/checkMail"/>';
+        let mem_email = join_email.val();
+        let code_loader = $('#code-loader')
+        if(mail_code.val().length === 6) {
+            code_loader.html('');
+            code_loader.attr('class', 'loading');
+            $.ajax(url,{
+                data:{
+                    mem_email:mem_email,
+                    mae_key:mail_code.val()
+                },
+                success:function(data) {
+                    if(data=='success') {
+                        mail_code.attr('class', 'medium-input margin-25px-bottom xs-margin-10px-bottom required border-success');
+                        code_loader.removeClass('loading');
+                        code_loader.html('<p class="text-success">올바른 코드입니다.</p>');
+                    } else {
+                        mail_code.attr('class', 'medium-input margin-25px-bottom xs-margin-10px-bottom required border-danger');
+                        code_loader.removeClass('loading');
+                        code_loader.html('<p class="text-danger">올바르지 않는 코드입니다.</p>');
+                    }
+                }
+            })
         }
     }
 </script>

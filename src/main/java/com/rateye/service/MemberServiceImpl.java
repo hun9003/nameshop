@@ -2,6 +2,7 @@ package com.rateye.service;
 
 import javax.inject.Inject;
 
+import com.rateye.domain.MemberAuthEmailBean;
 import com.rateye.domain.MemberBean;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +40,41 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("MemberServiceImpl - insertMember()");
 		memberBean.setMem_register_datetime(new Timestamp(System.currentTimeMillis()));
 		return memberDAO.insertMember(memberBean);
+	}
+
+	@Override
+	public MemberAuthEmailBean getMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean) {
+		System.out.println("MemberServiceImpl - getMemberEmailCode()");
+		return memberDAO.getMemberEmailCode(memberAuthEmailBean);
+	}
+
+	@Override
+	public int createMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean) {
+		System.out.println("MemberServiceImpl - createMemberEmailCode()");
+		return memberDAO.createMemberEmailCode(memberAuthEmailBean);
+	}
+
+	@Override
+	public int updateMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean) {
+		System.out.println("MemberServiceImpl - updateMemberEmailCode()");
+		return memberDAO.updateMemberEmailCode(memberAuthEmailBean);
+	}
+
+	@Override
+	public MemberAuthEmailBean checkMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean) {
+		System.out.println("MemberServiceImpl - checkMemberEmailCode()");
+		return memberDAO.checkMemberEmailCode(memberAuthEmailBean);
+	}
+
+	@Override
+	public int updateMemberEmailCert(MemberBean memberBean) {
+		System.out.println("MemberServiceImpl - updateMemberEmailCert()");
+		return memberDAO.updateMemberEmailCert(memberBean);
+	}
+
+	@Override
+	public int useMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean) {
+		System.out.println("MemberServiceImpl - insertMember()");
+		return memberDAO.useMemberEmailCode(memberAuthEmailBean);
 	}
 }

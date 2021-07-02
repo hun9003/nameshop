@@ -1124,5 +1124,596 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     <user id="331" parent="1" name="rdsadmin">
       <Host>localhost</Host>
     </user>
+    <table id="332" parent="5" name="blame">
+      <Comment>신고</Comment>
+    </table>
+    <table id="333" parent="5" name="comment">
+      <Comment>이름 추천</Comment>
+    </table>
+    <table id="334" parent="5" name="image">
+      <Comment>이미지 관리</Comment>
+    </table>
+    <table id="335" parent="5" name="member">
+      <Comment>회원</Comment>
+    </table>
+    <table id="336" parent="5" name="member_auth_email">
+      <Comment>이메일 인증키</Comment>
+    </table>
+    <table id="337" parent="5" name="member_login_log">
+      <Comment>로그인 기록</Comment>
+    </table>
+    <table id="338" parent="5" name="notification">
+      <Comment>알림 기능</Comment>
+    </table>
+    <table id="339" parent="5" name="post">
+      <Comment>이름 추천 게시글</Comment>
+    </table>
+    <column id="340" parent="332" name="bla_id">
+      <Position>1</Position>
+      <Comment>PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="341" parent="332" name="target_type">
+      <Position>2</Position>
+      <Comment>1: 추천받는사람, 2: 추천하는사람</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="342" parent="332" name="target_id">
+      <Position>3</Position>
+      <Comment>신고한 컨텐츠</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="343" parent="332" name="mem_id">
+      <Position>4</Position>
+      <Comment>신고를 한 회원의 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="344" parent="332" name="target_mem_id">
+      <Position>5</Position>
+      <Comment>신고를 당한 회원 PK
+</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="345" parent="332" name="bla_datetime">
+      <Position>6</Position>
+      <Comment>신고를 한 일시</Comment>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="346" parent="332" name="bla_ip">
+      <Position>7</Position>
+      <Comment>신고를 한 IP</Comment>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="347" parent="332" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>bla_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="348" parent="333" name="cmt_id">
+      <Position>1</Position>
+      <Comment>PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="349" parent="333" name="post_id">
+      <Position>2</Position>
+      <Comment>게시물 테이블 (post)의 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="350" parent="333" name="cmt_title">
+      <Position>3</Position>
+      <Comment>추천 하는 이름</Comment>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="351" parent="333" name="cmt_content">
+      <Position>4</Position>
+      <Comment>추천 이름 설명</Comment>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="352" parent="333" name="mem_id">
+      <Position>5</Position>
+      <Comment>추천한 회원 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="353" parent="333" name="cmt_datetime">
+      <Position>6</Position>
+      <Comment>추천일시</Comment>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="354" parent="333" name="cmt_ip">
+      <Position>7</Position>
+      <Comment>추천자 IP</Comment>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="355" parent="333" name="cmt_blame">
+      <Position>8</Position>
+      <Comment>신고 회수</Comment>
+      <DataType>mediumint(9)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="356" parent="333" name="cmt_device">
+      <Position>9</Position>
+      <Comment>1: 데스크탑, 2: 모바일</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
+    </column>
+    <column id="357" parent="333" name="cmt_del">
+      <Position>10</Position>
+      <Comment>삭제 여부</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="358" parent="333" name="cmt_close">
+      <Position>11</Position>
+      <Comment>채택 되었는지 확인</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="359" parent="333" name="cmt_close_datetime">
+      <Position>12</Position>
+      <Comment>채택된 시간</Comment>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="360" parent="333" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cmt_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="361" parent="334" name="img_id">
+      <Position>1</Position>
+      <Comment>PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="362" parent="334" name="mem_id">
+      <Position>2</Position>
+      <Comment>이미지 업로드한 회원 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="363" parent="334" name="img_originname">
+      <Position>3</Position>
+      <Comment>이미지 업로드시 원래 파일명</Comment>
+      <DataType>varchar(1000)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="364" parent="334" name="img_filename">
+      <Position>4</Position>
+      <Comment>이미지 업로드시 서버에 저장된 파일명</Comment>
+      <DataType>varchar(1000)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="365" parent="334" name="img_filesize">
+      <Position>5</Position>
+      <Comment>파일 크기</Comment>
+      <DataType>int(11)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="366" parent="334" name="img_width">
+      <Position>6</Position>
+      <Comment>이미지 가로 길이</Comment>
+      <DataType>mediumint(9)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="367" parent="334" name="img_height">
+      <Position>7</Position>
+      <Comment>이미지 세로 길이</Comment>
+      <DataType>int(11)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="368" parent="334" name="img_type">
+      <Position>8</Position>
+      <Comment>파일 확장자</Comment>
+      <DataType>varchar(10)|0s</DataType>
+    </column>
+    <column id="369" parent="334" name="img_datetime">
+      <Position>9</Position>
+      <Comment>등록 일자</Comment>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="370" parent="334" name="img_ip">
+      <Position>10</Position>
+      <Comment>등록 ip</Comment>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="371" parent="334" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>img_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="372" parent="335" name="mem_id">
+      <Position>1</Position>
+      <Comment>PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="373" parent="335" name="mem_email">
+      <Position>2</Position>
+      <Comment>회원 이메일</Comment>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="374" parent="335" name="mem_password">
+      <Position>3</Position>
+      <Comment>회원 비밀번호</Comment>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="375" parent="335" name="mem_name">
+      <Position>4</Position>
+      <Comment>회원 닉네임</Comment>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="376" parent="335" name="mem_register_datetime">
+      <Position>5</Position>
+      <Comment>회원 가입일</Comment>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="377" parent="335" name="mem_register_ip">
+      <Position>6</Position>
+      <Comment>회원 가입 IP</Comment>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="378" parent="335" name="mem_lastlogin_datetime">
+      <Position>7</Position>
+      <Comment>회원 마지막 로그인 시간</Comment>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="379" parent="335" name="mem_lastlogin_ip">
+      <Position>8</Position>
+      <Comment>회원 마지막 로그인 IP</Comment>
+      <DataType>varchar(100)|0s</DataType>
+    </column>
+    <column id="380" parent="335" name="mem_class">
+      <Position>9</Position>
+      <Comment>0 : 일반, 1 : 우수, 2 : 관리자</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="381" parent="335" name="mem_memo">
+      <Position>10</Position>
+      <Comment>관리자 메모</Comment>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="382" parent="335" name="mem_denied">
+      <Position>11</Position>
+      <Comment>회원 차단 여부</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="383" parent="335" name="mem_notification">
+      <Position>12</Position>
+      <Comment>알림 수신 거부 여부</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <index id="384" parent="335" name="member_mem_email_uindex">
+      <ColNames>mem_email</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="385" parent="335" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>mem_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="386" parent="335" name="member_mem_email_uindex">
+      <ColNames>mem_email</ColNames>
+      <UnderlyingIndexName>member_mem_email_uindex</UnderlyingIndexName>
+    </key>
+    <column id="387" parent="336" name="mae_id">
+      <Position>1</Position>
+      <Comment>PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="388" parent="336" name="mem_email">
+      <Position>2</Position>
+      <Comment>인증이 필요한 회원 이메일</Comment>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="389" parent="336" name="mae_key">
+      <Position>3</Position>
+      <Comment>이메일 인증키</Comment>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="390" parent="336" name="mae_type">
+      <Position>4</Position>
+      <Comment>인증종류 1: 회원가입, 2: 패스워드분실</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
+    </column>
+    <column id="391" parent="336" name="mae_generate_datetime">
+      <Position>5</Position>
+      <Comment>인증키 생성 일자</Comment>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="392" parent="336" name="mae_use_datetime">
+      <Position>6</Position>
+      <Comment>인증키 사용 일자</Comment>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="393" parent="336" name="mae_expired">
+      <Position>7</Position>
+      <Comment>인증키 파기 여부</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <key id="394" parent="336" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>mae_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="395" parent="337" name="mll_id">
+      <Position>1</Position>
+      <Comment>PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="396" parent="337" name="mll_success">
+      <Position>2</Position>
+      <Comment>로그인 성공여부</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="397" parent="337" name="mem_id">
+      <Position>3</Position>
+      <Comment>로그인한 회원 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="398" parent="337" name="mll_email">
+      <Position>4</Position>
+      <Comment>로그인 시도 이메일</Comment>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="399" parent="337" name="mll_datetime">
+      <Position>5</Position>
+      <Comment>로그인 일시</Comment>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="400" parent="337" name="mll_ip">
+      <Position>6</Position>
+      <Comment>로그인한 IP</Comment>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="401" parent="337" name="mll_reason">
+      <Position>7</Position>
+      <Comment>로그인 성공/실패시 이유</Comment>
+      <DataType>varchar(200)|0s</DataType>
+    </column>
+    <column id="402" parent="337" name="mll_useragent">
+      <Position>8</Position>
+      <Comment>로그인한 브라우저 user agent</Comment>
+      <DataType>varchar(2000)|0s</DataType>
+    </column>
+    <column id="403" parent="337" name="mll_url">
+      <Position>9</Position>
+      <Comment>로그인한 페이지 주소</Comment>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="404" parent="337" name="mll_referer">
+      <Position>10</Position>
+      <Comment>이전 페이지 주소</Comment>
+      <DataType>text|0s</DataType>
+    </column>
+    <key id="405" parent="337" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>mll_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="406" parent="338" name="not_id">
+      <Position>1</Position>
+      <Comment>PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="407" parent="338" name="mem_id">
+      <Position>2</Position>
+      <Comment>알림을 받는 회원 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="408" parent="338" name="target_mem_id">
+      <Position>3</Position>
+      <Comment>해당 알림을 받게 하는 액션을 취한 회원 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="409" parent="338" name="not_type">
+      <Position>4</Position>
+      <Comment>알림 종류 cmt, post</Comment>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="410" parent="338" name="not_content_id">
+      <Position>5</Position>
+      <Comment>알림이 있게 한 글의 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="411" parent="338" name="not_message">
+      <Position>6</Position>
+      <Comment>알림내용</Comment>
+      <DataType>varchar(1000)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="412" parent="338" name="not_url">
+      <Position>7</Position>
+      <Comment>알림 클릭시 이동할 주소</Comment>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="413" parent="338" name="not_datetime">
+      <Position>8</Position>
+      <Comment>알림 발생 일시</Comment>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="414" parent="338" name="not_read_datetime">
+      <Position>9</Position>
+      <Comment>알림 확인 일시</Comment>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="415" parent="338" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>not_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="416" parent="339" name="post_id">
+      <Position>1</Position>
+      <Comment>PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="417" parent="339" name="post_title">
+      <Position>2</Position>
+      <Comment>제목</Comment>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="418" parent="339" name="post_content">
+      <Position>3</Position>
+      <Comment>내용</Comment>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="419" parent="339" name="post_category">
+      <Position>4</Position>
+      <Comment>카테고리 키</Comment>
+      <DataType>varchar(100)|0s</DataType>
+    </column>
+    <column id="420" parent="339" name="mem_id">
+      <Position>5</Position>
+      <Comment>회원 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="421" parent="339" name="post_email">
+      <Position>6</Position>
+      <Comment>회원 이메일</Comment>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="422" parent="339" name="post_name">
+      <Position>7</Position>
+      <Comment>회원 이름</Comment>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="423" parent="339" name="post_datetime">
+      <Position>8</Position>
+      <Comment>작성일</Comment>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="424" parent="339" name="post_updated_datetime">
+      <Position>9</Position>
+      <Comment>최종 수정 날짜</Comment>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="425" parent="339" name="post_update_mem_id">
+      <Position>10</Position>
+      <Comment>수정시 수정 회원 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="426" parent="339" name="post_comment_count">
+      <Position>11</Position>
+      <Comment>이름 추천 달린 개수</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="427" parent="339" name="post_comment_updated_datetime">
+      <Position>12</Position>
+      <Comment>최근 추천 업데이트 일자</Comment>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="428" parent="339" name="post_hit">
+      <Position>13</Position>
+      <Comment>조회 수</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="429" parent="339" name="post_ip">
+      <Position>14</Position>
+      <Comment>등록한 아이피</Comment>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="430" parent="339" name="post_blame">
+      <Position>15</Position>
+      <Comment>신고된 회수</Comment>
+      <DataType>mediumint(9)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="431" parent="339" name="post_device">
+      <Position>16</Position>
+      <Comment>1 : 데스크탑, 2 : 모바일</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
+    </column>
+    <column id="432" parent="339" name="post_del">
+      <Position>17</Position>
+      <Comment>삭제 여부</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="433" parent="339" name="post_close">
+      <Position>18</Position>
+      <Comment>마감 여부</Comment>
+      <DataType>tinyint(4)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="434" parent="339" name="post_close_datetime">
+      <Position>19</Position>
+      <Comment>마감 시간</Comment>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="435" parent="339" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>post_id</ColNames>
+      <Primary>1</Primary>
+    </key>
   </database-model>
 </dataSource>
