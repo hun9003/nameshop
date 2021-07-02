@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@amazonDB" uuid="32c5de5b-2059-4ec5-9286-319039c774c9">
+    <data-source source="LOCAL" name="@amazonDB" uuid="a23d4cf3-4f3a-41e1-b5f9-05e16de25866">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
