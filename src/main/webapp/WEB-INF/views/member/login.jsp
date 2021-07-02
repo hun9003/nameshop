@@ -87,7 +87,7 @@
     $(document).ready(function () {
         const join_email = $('#join-email');
         const join_name = $('#join-name');
-        const join_password = $('#join_password');
+        const join_password = $('#join-password');
         join_email.keyup(function(){
             let result = getEmailResult(join_email.val());
             let msg_box = $('#join-email-msg')
@@ -132,7 +132,7 @@
         })
         join_password.keyup(function(){
             let result = getPasswordResult(join_password.val());
-            let msg_box = $('#join-password-msg')
+            let msg_box = $('#join-password-msg');
             switch (result) {
                 case 'danger':
                     join_password.attr('class','small-input bg-white margin-20px-bottom required border-danger');
@@ -182,12 +182,12 @@
         let passwordRule = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
         let specialPasswordRule = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
 
-        if(!specialPasswordRule.test(password)) {
-            return 'danger';
-        } else if(!passwordRule.test(password)) {
+        if(specialPasswordRule.test(password)) {
+            return 'success';
+        } else if(passwordRule.test(password)) {
             return 'warning';
         } else {
-            return 'success';
+            return 'danger';
         }
     }
 </script>
