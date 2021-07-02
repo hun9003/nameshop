@@ -119,12 +119,12 @@
                     msg_box.html('<spring:message code="msg.form.name.invalid"/>');
                     break;
                 case 'duplicate':
-                    join_email.attr('class','small-input bg-white margin-20px-bottom required border-danger');
+                    join_name.attr('class','small-input bg-white margin-20px-bottom required border-danger');
                     msg_box.attr('class','float-right text-danger');
                     msg_box.html('<spring:message code="msg.form.name.duplicate"/>');
                     break;
                 case 'success':
-                    join_email.attr('class','small-input bg-white margin-20px-bottom required border-success');
+                    join_name.attr('class','small-input bg-white margin-20px-bottom required border-success');
                     msg_box.attr('class','float-right text-success');
                     msg_box.html('<spring:message code="msg.form.name.success"/>');
                     break;
@@ -135,17 +135,17 @@
             let msg_box = $('#join-password-msg')
             switch (result) {
                 case 'danger':
-                    join_name.attr('class','small-input bg-white margin-20px-bottom required border-danger');
+                    join_password.attr('class','small-input bg-white margin-20px-bottom required border-danger');
                     msg_box.attr('class','float-right text-danger');
                     msg_box.html('<spring:message code="msg.form.password.danger"/>');
                     break;
                 case 'warning':
-                    join_email.attr('class','small-input bg-white margin-20px-bottom required border-warning');
+                    join_password.attr('class','small-input bg-white margin-20px-bottom required border-warning');
                     msg_box.attr('class','float-right text-warning');
                     msg_box.html('<spring:message code="msg.form.password.warning"/>');
                     break;
                 case 'success':
-                    join_email.attr('class','small-input bg-white margin-20px-bottom required border-success');
+                    join_password.attr('class','small-input bg-white margin-20px-bottom required border-success');
                     msg_box.attr('class','float-right text-success');
                     msg_box.html('<spring:message code="msg.form.password.success"/>');
                     break;
