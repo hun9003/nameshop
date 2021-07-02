@@ -44,7 +44,9 @@ public class ContentController {
     @RequestMapping(value = "/write", method = RequestMethod.GET)
     public String write(HttpSession session, Model model) {
         System.out.println("ContentController - write() :: GET");
+        String title = "write"; // 이름 추천받기
 
+        model.addAttribute("title", title);
         return StrResources.CONTENT_WRITE_PAGE;
     }
 
@@ -57,7 +59,9 @@ public class ContentController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(HttpSession session, Model model) {
         System.out.println("ContentController - list() :: GET");
+        String title = "list"; // 이름 추천하기
 
+        model.addAttribute("title", title);
         return StrResources.CONTENT_LIST_PAGE;
     }
 
@@ -70,7 +74,9 @@ public class ContentController {
     @RequestMapping(value = "/help", method = RequestMethod.GET)
     public String help(HttpSession session, Model model) {
         System.out.println("ContentController - help() :: GET");
+        String title = "help"; // 고객지원
 
+        model.addAttribute("title", title);
         return StrResources.CONTACT_PAGE;
     }
 }

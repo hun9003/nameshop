@@ -12,7 +12,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title><spring:message code="title.head"/> :: <spring:message code="title.subject.home"/></title>
+    <title><spring:message code="title.head"/> :: <spring:message code="title.${title ne null ? title : 'home'}"/></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="ThemeZaa">
