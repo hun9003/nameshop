@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-12 col-xl-4 col-lg-6 breadcrumb justify-content-center justify-content-lg-end text-small alt-font md-margin-10px-top">
                     <ul class="xs-text-center">
-                        <li><a href="<c:url value="/"/>"><spring:message code="title.subject.home"/></a></li>
+                        <li><a href="<c:url value="/"/>"><spring:message code="title.home"/></a></li>
                         <li><spring:message code="title.profile"/></li>
                     </ul>
                 </div>
@@ -35,11 +35,11 @@
                             <div class="panel-heading">
                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion1" href="#accordion-style-03-01" aria-expanded="false">
                                     <div class="panel-title">
-                                        <p class="alt-font text-extra-dark-gray font-weight-500">기본 정보</p>
+                                        <p class="alt-font text-extra-dark-gray font-weight-500"><spring:message code="label.member.info.basic"/></p>
                                         <dl class="profile-card-content">
-                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">이메일</span></dt>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.email"/></span></dt>
                                             <dd><span class="alt-font text-extra-dark-gray d-inline-block">sample001@gmail.com</span></dd>
-                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">닉네임</span></dt>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.name"/></span></dt>
                                             <dd><span class="alt-font text-extra-dark-gray d-inline-block">뿌리뿌리</span></dd>
                                         </dl>
                                         <i class="indicator fas fa-angle-down text-extra-dark-gray icon-extra-small"></i>
@@ -47,7 +47,7 @@
                                 </a>
                             </div>
                             <div id="accordion-style-03-01" class="panel-collapse collapse" data-parent="#accordion1">
-                                <div class="panel-body">지어뿌리에서 회원님의 정보 입니다. </div>
+                                <div class="panel-body"><spring:message code="content.member.info.basic"/> </div>
                             </div>
                         </div>
                         <!-- end accordion item -->
@@ -60,19 +60,19 @@
                             <div class="panel-heading">
                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#accordion-style-03-02" aria-expanded="false">
                                     <div class="panel-title">
-                                        <p class="alt-font text-extra-dark-gray font-weight-500">활동 내역</p>
+                                        <p class="alt-font text-extra-dark-gray font-weight-500"><spring:message code="label.member.info.activity"/></p>
                                         <dl class="profile-card-content">
-                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">이번달 이름 추천</span></dt>
-                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block">5 회</span></dd>
-                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">누적 이름 추천</span></dt>
-                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block">29 회</span></dd>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.activity.month"/></span></dt>
+                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.activity.count" arguments="5"/></span></dd>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.activity.total"/></span></dt>
+                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.activity.count" arguments="5"/></span></dd>
                                         </dl>
                                         <i class="indicator fas fa-angle-down text-extra-dark-gray icon-extra-small"></i>
                                     </div>
                                 </a>
                             </div>
                             <div id="accordion-style-03-02" class="panel-collapse collapse" data-parent="#accordion2">
-                                <div class="panel-body">지어뿌리에서 활동하신 내역을 표시합니다.</div>
+                                <div class="panel-body"><spring:message code="content.member.info.activity"/></div>
                             </div>
                         </div>
                         <!-- end accordion item -->
@@ -85,19 +85,19 @@
                             <div class="panel-heading">
                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion3" href="#accordion-style-03-03" aria-expanded="false">
                                     <div class="panel-title">
-                                        <p class="alt-font text-extra-dark-gray font-weight-500">이용 내역</p>
+                                        <p class="alt-font text-extra-dark-gray font-weight-500"><spring:message code="label.member.info.use"/></p>
                                         <dl class="profile-card-content">
-                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">이름 등록 개수</span></dt>
-                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block">0 개</span></dd>
-                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">채택 이름 개수</span></dt>
-                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block">5 개</span></dd>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.use.registration"/></span></dt>
+                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.use.count" arguments="0"/></span></dd>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.use.adopt"/></span></dt>
+                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.use.count" arguments="5"/></span></dd>
                                         </dl>
                                         <i class="indicator fas fa-angle-down text-extra-dark-gray icon-extra-small"></i>
                                     </div>
                                 </a>
                             </div>
                             <div id="accordion-style-03-03" class="panel-collapse collapse" data-parent="#accordion3">
-                                <div class="panel-body">회원님께서 이름 추천을 받거나 채택을 하신 내역을 표시합니다.</div>
+                                <div class="panel-body"><spring:message code="content.member.info.use"/></div>
                             </div>
                         </div>
                         <!-- end accordion item -->

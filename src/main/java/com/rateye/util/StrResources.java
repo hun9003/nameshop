@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 public class StrResources {
 
-
+    public static final String REDIRECT = "redirect:";
 
 //    =====================================  [   Page Start   ]   =====================================
 
@@ -37,8 +37,18 @@ public class StrResources {
     public static final String CONTENT_LIST_PAGE = "/pages/content-list"; // 이름 추천 리스트 페이지
     public static final String CONTACT_PAGE = "/pages/contact"; // 고객 지원 페이지
 
-//    =====================================  [   Page End   ]   =====================================
+    public static final String MESSAGE_PAGE = "/common/message"; // 메세지 창 페이지
 
+//    =====================================  [   Page End   ]   =====================================
+//    =====================================  [   Message Start   ]   =====================================
+    public static final String MSG_ERROR = "error"; // 예기치 못한 오류로 실패했습니다. 관리자에게 문의하세요.
+
+    public static final String MSG_LOGIN_ALREADY = "login_already"; // 이미 로그인 하셨습니다.
+    public static final String MSG_LOGIN_SUCCESS = "login_success"; // 로그인에 성공했습니다.
+    public static final String MSG_LOGIN_FAIL = "login_fail"; // 아이디 혹은 비밀번호가 틀립니다.
+    public static final String MSG_JOIN_SUCCESS = "join_success"; // 회원가입을 성공적으로 마쳤습니다.
+
+//    =====================================  [   Message End   ]   =====================================
     public static boolean CHECK_LOGIN(HttpSession session) {
         return session.getAttribute("member") != null;
     }
