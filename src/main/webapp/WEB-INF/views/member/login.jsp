@@ -40,16 +40,16 @@
                         <div id="login-tab" class="tab-pane fade in active show">
                             <div class="col-12 col-xl-12 col-md-12 lg-padding-30px-lr md-padding-15px-lr sm-margin-40px-bottom">
                                 <h6 class="alt-font font-weight-500 text-extra-dark-gray"><spring:message code="label.member.login"/></h6>
-                                <form class="border-all border-color-medium-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all">
+                                <form action="<c:url value="/login"/>" class="border-all border-color-medium-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all" method="POST">
                                     <label class="margin-15px-bottom"><spring:message code="label.member.email"/> <span class="required-error text-radical-red">*</span></label>
-                                    <input class="small-input bg-white margin-20px-bottom required" type="text" name="text" placeholder="Enter your email">
+                                    <input class="small-input bg-white margin-20px-bottom required" type="text" name="mem_email" placeholder="Enter your email">
                                     <label class="margin-15px-bottom"><spring:message code="label.member.password"/> <span class="required-error text-radical-red">*</span></label>
-                                    <input class="small-input bg-white margin-20px-bottom required" type="password" name="password" placeholder="Enter your password">
+                                    <input class="small-input bg-white margin-20px-bottom required" type="password" name="mem_password" placeholder="Enter your password">
                                     <label class="margin-25px-bottom">
                                         <input class="d-inline-block align-middle w-auto mb-0 margin-5px-right" type="checkbox" name="account">
                                         <span class="d-inline-block align-middle"><spring:message code="label.member.remember"/></span>
                                     </label>
-                                    <button class="btn btn-medium btn-fancy btn-dark-gray w-100 submit" type="submit"><spring:message code="button.member.login"/></button>
+                                    <button class="btn btn-medium btn-fancy btn-dark-gray w-100" type="submit"><spring:message code="button.member.login"/></button>
                                     <input type="hidden" name="referrer" value="${referrer}">
                                     <p class="text-right margin-20px-top mb-0"><a href="#" class="btn btn-link  btn-medium text-extra-dark-gray"><spring:message code="label.member.toForget"/></a></p>
                                 </form>
@@ -60,7 +60,7 @@
                         <div id="join-tab" class="tab-pane fade in">
                             <div class="col-12 col-xl-12 lg-padding-30px-lr md-padding-15px-lr sm-margin-40px-bottom">
                                 <h6 class="alt-font font-weight-500 text-extra-dark-gray"><spring:message code="label.member.join"/></h6>
-                                <form action ="<c:url value="/join"/>" method="post" class="bg-light-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all" onsubmit="return false">
+                                <form id="join-form" action ="<c:url value="/join"/>" method="post" class="bg-light-gray padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all">
                                     <label class="margin-15px-bottom" for="join-name"><spring:message code="label.member.name"/> <span class="required-error text-radical-red">*</span></label> <span id="join-name-msg" class="float-right"></span>
                                     <input id="join-name" class="small-input bg-white margin-20px-bottom required" type="text" name="mem_name" placeholder="Enter your username" required>
                                     <label class="margin-15px-bottom" for="join-email"><spring:message code="label.member.email"/> <span class="required-error text-radical-red">*</span></label>  <span id="join-email-msg" class="float-right"></span>
@@ -110,17 +110,12 @@
             let ready = $('#join-email-ready');
             ready.val('0');
             let result = getEmailResult(join_email.val());
-            let msg_box = $('#join-email-msg')
+            let msg_box = $('#join-email-msg');
             switch (result) {
                 case 'invalid':
                     join_email.attr('class','small-input bg-white margin-20px-bottom required border-danger');
                     msg_box.attr('class','float-right text-danger');
                     msg_box.html('<spring:message code="msg.form.email.invalid"/>');
-                    break;
-                case 'duplicate':
-                    join_email.attr('class','small-input bg-white margin-20px-bottom required border-danger');
-                    msg_box.attr('class','float-right text-danger');
-                    msg_box.html('<spring:message code="msg.form.email.duplicate"/>');
                     break;
                 case 'success':
                     join_email.attr('class','small-input bg-white margin-20px-bottom required border-success');
@@ -129,12 +124,12 @@
                     ready.val('1');
                     break;
             }
-        })
+        });
         join_name.keyup(function(){
             let ready = $('#join-name-ready');
             ready.val('0');
             let result = getNameResult(join_name.val());
-            let msg_box = $('#join-name-msg')
+            let msg_box = $('#join-name-msg');
             switch (result) {
                 case 'invalid':
                     join_name.attr('class','small-input bg-white margin-20px-bottom required border-danger');
@@ -153,7 +148,7 @@
                     ready.val('1');
                     break;
             }
-        })
+        });
         join_password.keyup(function(){
             let ready = $('#join-password-ready');
             ready.val('0');
@@ -178,10 +173,18 @@
                     ready.val('1');
                     break;
             }
-        })
+        });
         mail_code.keyup(function (){
             mail_check();
-        })
+        });
+
+        join_email.change(function () {
+            checkEmail(join_email.val())
+        });
+
+        join_name.change(function () {
+            checkName(join_name.val())
+        });
     });
 
     function getEmailResult(email) {
@@ -190,8 +193,6 @@
         if(!emailRule.test(email)) {
             // 경고
             return 'invalid';
-        } else if(email === '') {
-            return 'duplicate';
         } else {
             return 'success';
         }
@@ -202,8 +203,6 @@
         if(!nameRule.test(name)) {
             // 경고
             return 'invalid';
-        } else if(name === '') {
-            return 'duplicate';
         } else {
             return 'success';
         }
@@ -229,7 +228,7 @@
         } else if ($('#join-email-ready') === '0') {
             join_email.focus();
             return false;
-        } else if ($('#jjoin-password') === '0') {
+        } else if ($('#join-password') === '0') {
             join_password.focus();
             return false;
         } else {
@@ -269,14 +268,43 @@
                     if(data=='success') {
                         mail_code.attr('class', 'medium-input margin-25px-bottom xs-margin-10px-bottom required border-success');
                         code_loader.removeClass('loading');
-                        code_loader.html('<p class="text-success">올바른 코드입니다.</p>');
+                        code_loader.html('<p class="text-success"><spring:message code="msg.form.code.success"/></p>');
+                        $('#join-form').submit();
                     } else {
                         mail_code.attr('class', 'medium-input margin-25px-bottom xs-margin-10px-bottom required border-danger');
                         code_loader.removeClass('loading');
-                        code_loader.html('<p class="text-danger">올바르지 않는 코드입니다.</p>');
+                        code_loader.html('<p class="text-danger"><spring:message code="msg.form.code.danger"/></p>');
                     }
                 }
             })
         }
+    }
+
+    function checkEmail(email) {
+        $.ajax('ckEmail', {
+            data: {mem_email: email},
+            success: function (data) {
+                if (data == 'false') {
+                    let msg_box = $('#join-email-msg');
+                    join_email.attr('class','small-input bg-white margin-20px-bottom required border-danger');
+                    msg_box.attr('class','float-right text-danger');
+                    msg_box.html('<spring:message code="msg.form.email.duplicate"/>');
+                }
+            }
+        })
+    }
+
+    function checkName(name) {
+        $.ajax('ckName', {
+            data: {mem_name: name},
+            success: function (data) {
+                if (data == 'false') {
+                    let msg_box = $('#join-name-msg');
+                    join_name.attr('class','small-input bg-white margin-20px-bottom required border-danger');
+                    msg_box.attr('class','float-right text-danger');
+                    msg_box.html('<spring:message code="msg.form.name.duplicate"/>');
+                }
+            }
+        })
     }
 </script>

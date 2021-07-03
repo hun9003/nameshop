@@ -8,6 +8,16 @@
             <PaintGroupHighlightMap />
           </value>
         </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/0ae0f406-9c57-46eb-8c1a-5d35575f1610/console_1.sql">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/.idea/dataSources.xml">
           <value>
             <PaintGroupHighlightMap />
@@ -29,6 +39,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/rateye/domain/MemberAuthEmailBean.java">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/rateye/domain/MemberLoginLogBean.java">
           <value>
             <PaintGroupHighlightMap />
           </value>

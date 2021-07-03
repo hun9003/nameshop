@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import com.rateye.domain.MemberAuthEmailBean;
 import com.rateye.domain.MemberBean;
+import com.rateye.domain.MemberLoginLogBean;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -80,5 +81,35 @@ public class MemberDAOImpl implements MemberDAO {
 	public int useMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean) {
 		System.out.println("MemberDAOImpl - useMemberEmailCode()");
 		return sqlSession.update(namespace+".useMemberEmailCode", memberAuthEmailBean);
+	}
+
+	@Override
+	public MemberBean getMember_email(String mem_email) {
+		System.out.println("MemberDAOImpl - getMember_email()");
+		return sqlSession.selectOne(namespace+".getMember_email", mem_email);
+	}
+
+	@Override
+	public MemberBean getMember_name(String mem_name) {
+		System.out.println("MemberDAOImpl - getMember_name()");
+		return sqlSession.selectOne(namespace+".getMember_name", mem_name);
+	}
+
+	@Override
+	public MemberBean checkMember(MemberBean memberBean) {
+		System.out.println("MemberDAOImpl - checkMember()");
+		return sqlSession.selectOne(namespace+".checkMember", memberBean);
+	}
+
+	@Override
+	public void insertLog(MemberLoginLogBean memberLoginLogBean) {
+		System.out.println("MemberDAOImpl - insertLog()");
+		sqlSession.insert(namespace+".insertLog", memberLoginLogBean);
+	}
+
+	@Override
+	public int updateLoginMember(MemberBean memberCheck) {
+		System.out.println("MemberDAOImpl - updateLoginMember()");
+		return sqlSession.update(namespace+".updateLoginMember", memberCheck);
 	}
 }

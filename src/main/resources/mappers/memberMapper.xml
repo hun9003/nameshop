@@ -3,6 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rateye.mapper.MemberMapper">
+    <!-- 아이디 중복체크 -->
+    <select id="getMember_email" resultType="member">
+        SELECT mem_id FROM member WHERE mem_email = #{mem_email}
+    </select>
+
+    <!-- 	닉네임 중복체크 -->
+    <select id="getMember_name" resultType="member">
+        SELECT mem_id FROM member WHERE mem_name = #{mem_name}
+    </select>
+
+    <!--    회원 가입-->
+    <insert id="insertMember">
+        INSERT INTO member (mem_email, mem_password, mem_name, mem_register_datetime, mem_register_ip)
+        VALUE (#{mem_email}, #{mem_password}, #{mem_name}, #{mem_register_datetime}, #{mem_register_ip})
+    </insert>
 
     <!--	이메일 코드 확인-->
     <select id="getMemberEmailCode" resultType="emailCode">
@@ -35,4 +50,19 @@
         UPDATE member_auth_email SET mae_use_datetime = #{mae_use_datetime}, mae_expired = #{mae_expired} WHERE mem_email = #{mem_email}
     </update>
 
+    <!-- 로그인 유효성 검사 -->
+    <select id="checkMember" resultType="member">
+        SELECT mem_id FROM member WHERE mem_email = #{mem_email} AND mem_password = #{mem_password}
+    </select>
+
+    <!--	로그인 로그-->
+    <insert id="insertLog">
+        INSERT INTO member_login_log VALUES (null, #{mll_success}, #{mem_id}, #{mll_email}, #{mll_datetime}
+                                            , #{mll_ip}, #{mll_reason}, #{mll_useragent}, #{mll_url}, #{mll_referer})
+    </insert>
+
+    <!-- 	로그인 기록 변경 -->
+    <update id="updateLoginMember">
+        UPDATE member SET mem_lastlogin_datetime = #{mem_lastlogin_datetime}, mem_lastlogin_ip = #{mem_lastlogin_ip} WHERE mem_id = #{mem_id}
+    </update>
 </mapper>

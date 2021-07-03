@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import com.rateye.domain.MemberAuthEmailBean;
 import com.rateye.domain.MemberBean;
+import com.rateye.domain.MemberLoginLogBean;
 import org.springframework.stereotype.Service;
 
 import com.rateye.dao.MemberDAO;
@@ -76,5 +77,35 @@ public class MemberServiceImpl implements MemberService {
 	public int useMemberEmailCode(MemberAuthEmailBean memberAuthEmailBean) {
 		System.out.println("MemberServiceImpl - insertMember()");
 		return memberDAO.useMemberEmailCode(memberAuthEmailBean);
+	}
+
+	@Override
+	public MemberBean getMember_email(String mem_email) {
+		System.out.println("MemberServiceImpl - getMember_email()");
+		return memberDAO.getMember_email(mem_email);
+	}
+
+	@Override
+	public MemberBean getMember_name(String mem_name) {
+		System.out.println("MemberServiceImpl - getMember_name()");
+		return memberDAO.getMember_name(mem_name);
+	}
+
+	@Override
+	public MemberBean checkMember(MemberBean memberBean) {
+		System.out.println("MemberServiceImpl - checkMember()");
+		return memberDAO.checkMember(memberBean);
+	}
+
+	@Override
+	public void insertLog(MemberLoginLogBean memberLoginLogBean) {
+		System.out.println("MemberServiceImpl - insertLog()");
+		memberDAO.insertLog(memberLoginLogBean);
+	}
+
+	@Override
+	public int updateLoginMember(MemberBean memberCheck) {
+		System.out.println("MemberServiceImpl - updateLoginMember()");
+		return memberDAO.updateLoginMember(memberCheck);
 	}
 }

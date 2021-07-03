@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.rateye.domain.MailBean;
 import com.rateye.domain.MemberAuthEmailBean;
 import com.rateye.domain.MemberBean;
+import com.rateye.domain.MemberLoginLogBean;
 import com.rateye.util.LoginAPI;
 import com.rateye.util.ScriptUtils;
 import com.rateye.util.StrResources;
@@ -20,6 +21,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -234,5 +236,108 @@ public class MemberController {
             entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return entity;
+    }
+
+    @RequestMapping(value = "/ckEmail", method = RequestMethod.GET)
+    public ResponseEntity<String> emailCheck(HttpServletRequest request) throws UnsupportedEncodingException {
+        System.out.println("MemberController - emailCheck() :: GET /ckEmail");
+        request.setCharacterEncoding("utf-8");
+        // 아이디 중복검사
+        ResponseEntity<String> entity;
+        String result;
+        try {
+            String mem_email = request.getParameter("mem_email");
+            MemberBean mb = memberService.getMember_email(mem_email);
+            if (mb != null) {
+                // 중복
+                result = "false";
+            } else {
+                // 사용가능
+                result = "true";
+            }
+            entity = new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return entity;
+    }
+
+    @RequestMapping(value = "/ckName", method = RequestMethod.GET)
+    public ResponseEntity<String> nameCheck(HttpServletRequest request) throws UnsupportedEncodingException {
+        System.out.println("MemberController - nameCheck() :: GET /ckName");
+        request.setCharacterEncoding("utf-8");
+        // 닉네임 중복검사
+        ResponseEntity<String> entity;
+        String result;
+        try {
+            String mem_name = request.getParameter("mem_name");
+            MemberBean mb = memberService.getMember_name(mem_name);
+            if (mb != null) {
+                // 중복
+                result = "false";
+            } else {
+                // 사용가능
+                result = "true";
+            }
+            entity = new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return entity;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginPost(@RequestHeader(value = "User-Agent") String userAgent, MemberBean memberBean, Model model, HttpSession session, HttpServletRequest request) {
+        System.out.println("MemberController - loginPost");
+        if (StrResources.CHECK_LOGIN(session)) {
+            model.addAttribute("msg", StrResources.MSG_LOGIN_ALREADY);
+            return StrResources.MESSAGE_PAGE;
+        }
+        String password = request.getParameter("mem_password"); // 유저 비밀번호
+        memberBean.setMem_password(new LoginAPI().SALT(password));
+        // 로그인을 위해 담아온 정보로 로그인 유효성 검사
+        MemberBean memberCheck = memberService.checkMember(memberBean);
+
+        String url = request.getParameter("referrer");
+        if (url == null) {
+            url = "/";
+        }
+
+        if (memberCheck != null) {
+            // 로그인에 성공했다면 마지막 로그인, 아이피 기록 업데이트
+            Timestamp nowTime = new Timestamp(System.currentTimeMillis());
+            String nowIp = ScriptUtils.getIp(request);
+
+            memberCheck.setMem_lastlogin_datetime(nowTime);
+            memberCheck.setMem_lastlogin_ip(nowIp);
+
+            MemberLoginLogBean memberLoginLogBean = new MemberLoginLogBean();
+            memberLoginLogBean.setMll_success(1);
+            memberLoginLogBean.setMem_id(memberCheck.getMem_id());
+            memberLoginLogBean.setMll_email(memberBean.getMem_email());
+            memberLoginLogBean.setMll_datetime(nowTime);
+            memberLoginLogBean.setMll_ip(nowIp);
+            memberLoginLogBean.setMll_reason("success");
+            memberLoginLogBean.setMll_useragent(userAgent);
+            memberLoginLogBean.setMll_url("/login");
+            memberLoginLogBean.setMll_referer(url);
+
+            memberService.insertLog(memberLoginLogBean);
+
+            int result = memberService.updateLoginMember(memberCheck);
+
+            // 업데이트 완료시 세션 저장
+            if (result == 1) {
+                session.setAttribute("member", memberCheck);
+
+            } else {
+                model.addAttribute("msg", StrResources.MSG_ERROR);
+            }
+        } else {
+            model.addAttribute("msg", StrResources.MSG_LOGIN_FAIL);
+        }
+        return StrResources.REDIRECT + url;
     }
 }
