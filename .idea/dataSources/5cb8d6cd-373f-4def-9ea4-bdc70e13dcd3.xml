@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="@amazonDB">
+<dataSource name="@amazon-ko">
   <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.21">
     <root id="1">
       <ServerVersion>10.4.13</ServerVersion>
@@ -1183,7 +1183,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     </column>
     <column id="344" parent="332" name="target_mem_id">
       <Position>5</Position>
-      <Comment>신고를 당한 회원 PK
+      <Comment>신고를 당한 회원 PK&#xd;
 </Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>

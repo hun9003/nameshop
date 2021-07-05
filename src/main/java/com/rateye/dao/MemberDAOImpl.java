@@ -83,33 +83,58 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.update(namespace+".useMemberEmailCode", memberAuthEmailBean);
 	}
 
+	// 이메일 중복체크
 	@Override
 	public MemberBean getMember_email(String mem_email) {
 		System.out.println("MemberDAOImpl - getMember_email()");
 		return sqlSession.selectOne(namespace+".getMember_email", mem_email);
 	}
 
+	// 닉네임 중복체크
 	@Override
 	public MemberBean getMember_name(String mem_name) {
 		System.out.println("MemberDAOImpl - getMember_name()");
 		return sqlSession.selectOne(namespace+".getMember_name", mem_name);
 	}
 
+	// 회원 로그인 유효성 검사
 	@Override
 	public MemberBean checkMember(MemberBean memberBean) {
 		System.out.println("MemberDAOImpl - checkMember()");
 		return sqlSession.selectOne(namespace+".checkMember", memberBean);
 	}
 
+	// 로그인 로그 기록
 	@Override
 	public void insertLog(MemberLoginLogBean memberLoginLogBean) {
 		System.out.println("MemberDAOImpl - insertLog()");
 		sqlSession.insert(namespace+".insertLog", memberLoginLogBean);
 	}
 
+	// 회원 마지막 접속 일자 수정
 	@Override
 	public int updateLoginMember(MemberBean memberCheck) {
 		System.out.println("MemberDAOImpl - updateLoginMember()");
 		return sqlSession.update(namespace+".updateLoginMember", memberCheck);
+	}
+
+	// 이메일 사용 여부 체크
+	@Override
+	public MemberAuthEmailBean checkUseCode(MemberAuthEmailBean memberAuthEmailBean) {
+		System.out.println("MemberDAOImpl - checkUseCode()");
+		return sqlSession.selectOne(namespace+".checkUseCode", memberAuthEmailBean);
+	}
+
+	// 회원 정보 호출
+	@Override
+	public MemberBean getMember(String mem_email) {
+		System.out.println("MemberDAOImpl - getMember()");
+		return sqlSession.selectOne(namespace+".getMember", mem_email);
+	}
+
+	@Override
+	public int updatePassword(MemberBean memberBean) {
+		System.out.println("MemberDAOImpl - updatePassword()");
+		return sqlSession.update(namespace+".updatePassword", memberBean);
 	}
 }

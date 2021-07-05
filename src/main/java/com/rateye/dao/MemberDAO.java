@@ -49,4 +49,10 @@ public interface MemberDAO {
     void insertLog(MemberLoginLogBean memberLoginLogBean);
 
     int updateLoginMember(MemberBean memberCheck);
+
+    MemberAuthEmailBean checkUseCode(MemberAuthEmailBean memberAuthEmailBean);
+
+    MemberBean getMember(String mem_email);
+
+    int updatePassword(MemberBean memberBean);
 }

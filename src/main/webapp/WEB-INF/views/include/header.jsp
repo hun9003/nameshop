@@ -11,7 +11,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!-- start header -->
 <header>
-    <nav class="navbar top-space navbar-expand-lg navbar-light bg-transparent header-light fixed-top navbar-boxed header-reverse-scroll">
+    <nav class="navbar top-space navbar-expand-lg navbar-light bg-white header-light fixed-top header-reverse-scroll navbar-boxed">
         <div class="container-fluid nav-header-container">
             <div class="col-5 col-lg-2 pl-lg-0 mr-auto mr-lg-0">
                 <a class="navbar-brand" href="<c:url value="/"/>">
@@ -69,8 +69,26 @@
             </div>
             <div class="col-auto col-lg-2 text-right hidden-xs px-lg-0">
                 <div class="header-social-icon d-inline-block">
-                    <a href="<c:url value="/my"/>"><i class="fas fa-user"></i></a>
-                    <a href="<c:url value="/login"/>"><i class="fas fa-sign-in-alt"></i></a>
+                    <c:choose>
+                        <c:when test="${sessionScope.member != null}">
+                            <a href="<c:url value="/my"/>" title="<spring:message code="title.profile"/>"><i class="fas fa-user"></i></a>
+                            <a href="#logout-box" class="popup-with-form" title="<spring:message code="title.logout"/>"><i class="fas fa-sign-out-alt"></i></a>
+                            <!-- start logout message -->
+                            <div id="logout-box" class="white-popup-block col-xl-4 col-lg-7 col-sm-9 p-0 mx-auto mfp-hide">
+                                <div class="padding-fifteen-all bg-white border-radius-6px xs-padding-six-all">
+                                    <h6 class="text-extra-dark-gray font-weight-500 margin-35px-bottom xs-margin-15px-bottom"><spring:message code="content.member.logout"/></h6>
+                                    <div>
+                                        <a href="<c:url value="/logout"/>" class="btn btn-medium btn-fancy btn-dark-gray w-100"><spring:message code="button.member.logout"/></a>
+                                        <div class="form-results d-none"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end logout message -->
+                        </c:when>
+                        <c:otherwise>
+                            <a href="<c:url value="/login"/>" title="<spring:message code="title.login"/>"><i class="fas fa-sign-in-alt"></i></a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
