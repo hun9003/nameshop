@@ -30,21 +30,24 @@
             <!-- end title -->
             <div class="col-12 col-xl-4 col-lg-8 col-md-10 text-center">
                 <h6 class="font-weight-300 margin-eight-bottom sm-margin-30px-bottom"><spring:message code="content.write.form.subject"/></h6>
-                <a href="#contact-form" class="btn btn-medium btn-round-edge btn-fast-blue popup-with-form"><spring:message code="button.write.open"/></a>
+                <a href="#post-form" class="btn btn-medium btn-round-edge btn-fast-blue popup-with-form"><spring:message code="button.write.open"/></a>
                 <!-- start contact form -->
-                <form id="contact-form" action="" method="post" class="white-popup-block col-xl-4 col-lg-7 col-sm-9 p-0 mx-auto mfp-hide">
+                <form id="post-form" action="<c:url value="/write"/>" method="post" class="white-popup-block col-xl-4 col-lg-7 col-sm-9 p-0 mx-auto mfp-hide" enctype="multipart/form-data">
                     <div class="padding-fifteen-all bg-white border-radius-6px xs-padding-six-all">
                         <h6 class="text-extra-dark-gray font-weight-500 margin-35px-bottom xs-margin-15px-bottom"><spring:message code="content.write.form.description"/></h6>
                         <div>
-                            <input class="medium-input margin-25px-bottom xs-margin-10px-bottom required" type="text" name="subject" placeholder="<spring:message code="label.write.subject"/>">
-                            <input class="medium-input margin-25px-bottom xs-margin-10px-bottom required" type="text" name="tag" placeholder="<spring:message code="label.write.tag"/>">
-                            <select class="medium-input margin-25px-bottom xs-margin-10px-bottom" name="category">
-                                <option><spring:message code="label.write.category.item1"/></option>
-                                <option><spring:message code="label.write.category.item2"/></option>
+                            <div class="col-12 col-12-large margin-20px-bottom text-center"><img id="post-image" class="profile_photo col-6" style="background-color: #e2e2e2; cursor: pointer;" src="<c:url value="/resources/images/logo@2x.png"/>" alt="대표 이미지" onclick="get_photo()"></div>
+                            <input type="file" style="display: none;" id="post-image-input" name="image">
+                            <input class="medium-input margin-25px-bottom xs-margin-10px-bottom required" type="text" name="post_title" placeholder="<spring:message code="label.write.subject"/>">
+                            <input class="medium-input margin-25px-bottom xs-margin-10px-bottom required" id="tag-box" type="text" placeholder="<spring:message code="label.write.tag"/>">
+                            <input id="post-tag" type="hidden" name="post_tag" value="">
+                            <select class="medium-input margin-25px-bottom xs-margin-10px-bottom" name="post_category">
+                                <option value="<spring:message code="label.write.category.item1"/>"><spring:message code="label.write.category.item1"/></option>
+                                <option value="<spring:message code="label.write.category.item2"/>"><spring:message code="label.write.category.item2"/></option>
                             </select>
-                            <textarea class="medium-textarea xs-h-100px xs-margin-10px-bottom" rows="6" name="comment" placeholder="<spring:message code="label.write.content"/>"></textarea>
-                            <input type="hidden" name="redirect" value="">
-                            <button class="btn btn-medium btn-gradient-sky-blue-pink mb-0 submit" type="submit"><spring:message code="button.write.submit"/></button>
+                            <textarea class="medium-textarea xs-h-100px xs-margin-10px-bottom" rows="6" name="post_content" placeholder="<spring:message code="label.write.content"/>"></textarea>
+                            <input type="hidden" id="device-type" name="device_type">
+                            <button class="btn btn-medium btn-gradient-sky-blue-pink mb-0" type="submit"><spring:message code="button.write.submit"/></button>
                             <div class="form-results d-none"></div>
                         </div>
                     </div>
@@ -126,3 +129,41 @@
 </section>
 <!-- end section -->
 <c:import url="/inc/bottom"/>
+
+<script>
+    let filter = "win16|win32|win64|mac|macintel";
+    if ( navigator.platform ) {
+        if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) {
+            //mobile alert('mobile 접속');
+            document.getElementById('device-type').value = 2;
+        } else {
+            //pc alert('pc 접속');
+            document.getElementById('device-type').value = 1;
+        }
+    }
+    $('#post-image-input').on('change', function(e){
+        //console.log(e);
+        const [file] = $(this)[0].files
+        if (file) {
+            $('#post-image').prop('src', URL.createObjectURL(file));
+        }
+    });
+
+    function get_photo() {
+        let isLogo = $('#post-image').attr('src') === '<c:url value="/resources/images/logo@2x.png"/>';
+        if(isLogo) {
+            if (confirm('<spring:message code="msg.photo.select"/>')) {
+                $('#post-image-input').click();
+            }
+        } else {
+            delete_photo();
+        }
+    }
+
+    function delete_photo() {
+        if (confirm('<spring:message code="msg.photo.delete"/>')) {
+            $('#post-image').prop('src', '<c:url value="/resources/images/logo@2x.png"/>');
+            $("#post-image-input").val("");
+        }
+    }
+</script>

@@ -1706,19 +1706,34 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <DataType>tinyint(4)|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="433" parent="339" name="post_close">
+    <column id="433" parent="339" name="post_tag">
       <Position>18</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="434" parent="339" name="post_close">
+      <Position>19</Position>
       <Comment>마감 여부</Comment>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="434" parent="339" name="post_close_datetime">
-      <Position>19</Position>
+    <column id="435" parent="339" name="post_close_datetime">
+      <Position>20</Position>
       <Comment>마감 시간</Comment>
       <DataType>datetime|0s</DataType>
     </column>
-    <key id="435" parent="339" name="PRIMARY">
+    <column id="436" parent="339" name="img_id">
+      <Position>21</Position>
+      <Comment>이미지 파일 PK</Comment>
+      <DataType>int(11)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="437" parent="339" name="post_image">
+      <Position>22</Position>
+      <Comment>이미지 경로</Comment>
+      <DataType>text|0s</DataType>
+    </column>
+    <key id="438" parent="339" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>post_id</ColNames>
       <Primary>1</Primary>

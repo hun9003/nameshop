@@ -42,240 +42,53 @@
                 <ul class="blog-classic blog-wrapper grid grid-5col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large" style="position: relative; height: 2181px;">
                     <li class="grid-sizer"></li>
                     <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" style="position: absolute; left: 0%; top: 0px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-01.html"><img src="images/blog-img217.jpg" alt="" data-no-retina=""></a>
+                    <c:forEach var="post" items="${posts}">
+                        <li class="grid-item wow animate__fadeIn" data-wow-delay="0.2s" style="position: absolute; left: 24.9994%; top: 0px; animation: 0s ease 0s 1 normal none running none;">
+                            <div class="blog-post">
+                                <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
+                                    <a href=""><img src="<c:choose>
+                                    <c:when test="${post.img_id != 0}">${post.post_image}</c:when>
+                                    <c:otherwise><c:url value="/resources/images/logo@2x.png"/></c:otherwise>
+                                    </c:choose>" style="background-color: #e2e2e2;" alt="" data-no-retina=""></a>
+                                </div>
+                                <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
+                                    <a href="" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">${post.post_title}</a>
+                                    <p class="w-95 content-text-overflow">${post.post_content}</p>
+                                    <span class="separator bg-gradient-light-purple-light-orange"></span>
+                                    <a href="" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
+                                </div>
                             </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <p class="subject-text-overflow"><a href="blog-post-layout-01.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">The best way to predict the future is to create it The best whe best way to predict the future is to create it The bestay to predict the future is to create it</a></p>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy... </p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-01.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.2s" style="position: absolute; left: 24.9994%; top: 0px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-02.html"><img src="images/blog-img218.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-02.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Creativity is nothing but a mind set free</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-02.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.4s" style="position: absolute; left: 49.9988%; top: 0px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-03.html"><img src="images/blog-img219.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-03.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Simplicity is the ultimate sophistication</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-03.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.6s" style="position: absolute; left: 74.9982%; top: 0px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-04.html"><img src="images/blog-img220.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-04.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom"> A company is only as good as the people it keeps</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-04.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.8s" style="position: absolute; left: 0%; top: 545.25px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-05.html"><img src="images/blog-img221.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-05.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Reason and judgment are the qualities of leader</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-05.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" style="position: absolute; left: 24.9994%; top: 545.25px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-01.html"><img src="images/blog-img222.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-01.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Business is combination of war and sport</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-01.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.2s" style="position: absolute; left: 49.9988%; top: 545.25px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-02.html"><img src="images/blog-img223.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-02.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Look at usual things with unusual for eyes</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-02.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.4s" style="position: absolute; left: 74.9982%; top: 545.25px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-03.html"><img src="images/blog-img224.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-03.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">People ignore design that ignores people</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-03.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.6s" style="position: absolute; left: 0%; top: 1090.5px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-04.html"><img src="images/blog-img225.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-04.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Good work for people good design is a language</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-04.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.8s" style="position: absolute; left: 24.9994%; top: 1090.5px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-05.html"><img src="images/blog-img226.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-05.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Creativity is only obscure your reference</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-05.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" style="position: absolute; left: 49.9988%; top: 1090.5px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-01.html"><img src="images/blog-img227.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-01.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">All progress takes place for outside comfort zone</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-01.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.2s" style="position: absolute; left: 74.9982%; top: 1090.5px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-02.html"><img src="images/blog-img228.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-02.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Everything is designed for things are designed</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-02.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.4s" style="position: absolute; left: 0%; top: 1635.75px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-03.html"><img src="images/blog-img229.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-03.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Fashion and interior design are one and the same</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-03.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.6s" style="position: absolute; left: 24.9994%; top: 1635.75px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-04.html"><img src="images/blog-img230.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-04.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">The best comfort food will always be greens</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-04.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- end blog item -->
-                    <!-- start blog item -->
-                    <li class="grid-item wow animate__fadeIn" data-wow-delay="0.8s" style="position: absolute; left: 49.9988%; top: 1635.75px; animation: 0s ease 0s 1 normal none running none;">
-                        <div class="blog-post">
-                            <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                <a href="blog-post-layout-05.html"><img src="images/blog-img231.jpg" alt="" data-no-retina=""></a>
-                            </div>
-                            <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                <a href="blog-post-layout-05.html" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">Get in over your head as often an possible</a>
-                                <p class="w-95 content-text-overflow">Lorem ipsum is simply dummy text printing typesetting industry lorem ipsum has dummy...</p>
-                                <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                <a href="blog-post-layout-05.html" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    </c:forEach>
                     <!-- end blog item -->
                 </ul>
                 <!-- start pagination -->
                 <div class="col-12 d-flex justify-content-center margin-7-half-rem-top lg-margin-4-rem-top sm-margin-5-rem-top wow animate__fadeIn" style="visibility: hidden; animation-name: none;">
                     <ul class="pagination pagination-style-01 text-small font-weight-500 align-items-center">
-                        <li class="page-item"><a class="page-link" href="#"><i class="feather icon-feather-arrow-left icon-extra-small d-xs-none"></i></a></li>
-                        <li class="page-item"><a class="page-link" href="#">01</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">02</a></li>
-                        <li class="page-item"><a class="page-link" href="#">03</a></li>
-                        <li class="page-item"><a class="page-link" href="#">04</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i class="feather icon-feather-arrow-right icon-extra-small  d-xs-none"></i></a></li>
+                        <c:set value="/list" var="url"/>
+                        <c:set value="" var="params"/>
+                        <c:if test="${param.search_type != null || param.search_content != null || param.size != null}">
+                            <c:set var="params" value="&search_type=${param.search_type }&search_content=${param.search_content }&size=${param.size }"/>
+                        </c:if>
+                        <c:choose>
+                            <c:when test="${pageBean.startPage > pageBean.pageBlock}">
+                                <li class="page-item"><a class="page-link" href="<c:url value="${url}?page=${pageBean.startPage - pageBean.pageBlock}${params}"/>"><i class="feather icon-feather-arrow-left icon-extra-small d-xs-none"></i></a></li>
+                            </c:when>
+                            <c:otherwise><li class="page-item"><i class="feather icon-feather-arrow-left icon-extra-small d-xs-none"></i></li></c:otherwise>
+                        </c:choose>
+
+                        <c:forEach var="count" begin="${pageBean.startPage}" end="${pageBean.endPage}" step="1">
+                            <li class="page-item <c:if test="${pageBean.currentPage == count}">active</c:if>"><a class="page-link" href="<c:url value="${url}?page=${count}${params}"/>">${count}</a></li>
+                        </c:forEach>
+
+                        <c:choose>
+                            <c:when test="${pageBean.endPage < pageBean.pageCount}">
+                                <li class="page-item"><a class="page-link" href="<c:url value="${url}?page=${pageBean.startPage + pageBean.pageBlock}${params}"/>"><i class="feather icon-feather-arrow-right icon-extra-small  d-xs-none"></i></a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item"><i class="feather icon-feather-arrow-right icon-extra-small  d-xs-none"></i></li>
+                            </c:otherwise>
+                        </c:choose>
                     </ul>
                 </div>
                 <!-- end pagination -->

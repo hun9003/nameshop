@@ -53,6 +53,9 @@ public class StrResources {
     public static final String MSG_NOT_USE_CODE = "notUseCode"; // 인증이 유효하지 않습니다.
     public static final String MSG_PASSWORD_CHANGE_SUCCESS = "password_change_success"; // 비밀번호 변경을 성공했습니다. 로그인 창으로 이동합니다.
 
+    public static final String MSG_WRITE_SUCCESS = "write_success"; // 이름 추천 등록을 완료했습니다.
+    public static final String MSG_WRITE_FAIL = "write_fail"; // 이름 추천 등록을 완료하지 못했습니다.
+
 //    =====================================  [   Message End   ]   =====================================
     public static boolean CHECK_LOGIN(HttpSession session) {
         return session.getAttribute("member") != null;
