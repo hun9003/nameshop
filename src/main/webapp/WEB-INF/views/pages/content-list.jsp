@@ -46,18 +46,50 @@
                         <li class="grid-item wow animate__fadeIn" data-wow-delay="0.2s" style="position: absolute; left: 24.9994%; top: 0px; animation: 0s ease 0s 1 normal none running none;">
                             <div class="blog-post">
                                 <div class="blog-post-image margin-40px-bottom md-margin-35px-bottom xs-margin-25px-bottom">
-                                    <a href=""><img src="<c:choose>
+                                    <a href="#comment-form${post.post_id}" class="popup-with-form"><img src="<c:choose>
                                     <c:when test="${post.img_id != 0}">${post.post_image}</c:when>
                                     <c:otherwise><c:url value="/resources/images/logo@2x.png"/></c:otherwise>
-                                    </c:choose>" style="background-color: #e2e2e2;" alt="" data-no-retina=""></a>
+                                    </c:choose>" style="background-color: #e2e2e2;" alt="대표이미지" data-no-retina=""></a>
                                 </div>
                                 <div class="post-details margin-30px-bottom md-margin-10px-bottom xs-no-margin-bottom">
-                                    <a href="" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom">${post.post_title}</a>
+                                    <a href="#comment-form${post.post_id}" class="alt-font font-weight-500 text-extra-medium text-extra-dark-gray d-block margin-20px-bottom xs-margin-10px-bottom popup-with-form">${post.post_title}</a>
                                     <p class="w-95 content-text-overflow">${post.post_content}</p>
+                                    <span id="post_date${post.post_id}" class="alt-font text-uppercase d-block float-right"></span>
+                                    <script>document.getElementById('post_date${post.post_id}').innerHTML = timeForToday('${post.post_datetime}');</script>
                                     <span class="separator bg-gradient-light-purple-light-orange"></span>
-                                    <a href="" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange">이름 추천 하기</a>
+                                    <a href="#comment-form${post.post_id}" class="alt-font font-weight-500 text-extra-small text-uppercase text-gradient-light-purple-light-orange popup-with-form">이름 추천 하기</a>
                                 </div>
                             </div>
+                            <!-- start contact form -->
+                            <form id="comment-form${post.post_id}" action="<c:url value="/write"/>" method="post" class="white-popup-block col-xl-4 col-lg-7 col-sm-9 p-0 mx-auto mfp-hide">
+                                <div class="padding-fifteen-all bg-white border-radius-6px xs-padding-six-all">
+                                    <h6 class="text-extra-dark-gray font-weight-500 margin-35px-bottom xs-margin-15px-bottom">추천 해주실 이름이 있으십니까?</h6>
+                                    <p class="text-primary">현재 0명이 추천에 참여중입니다!</p>
+                                    <div>
+                                        <div class="col-12 col-12-large margin-20px-bottom text-center"><img class="profile_photo col-6" style="background-color: #e2e2e2; cursor: pointer;" src="<c:choose>
+                                    <c:when test="${post.img_id != 0}">${post.post_image}</c:when>
+                                    <c:otherwise><c:url value="/resources/images/logo@2x.png"/></c:otherwise>
+                                    </c:choose>" alt="대표 이미지"></div>
+                                        <dl class="post-card-content">
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">제목</span></dt>
+                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block">${post.post_title}</span></dd>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">카테고리</span></dt>
+                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block">${post.post_category}</span></dd>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">내용</span></dt>
+                                            <dd><span class="alt-font text-extra-dark-gray d-inline-block">${post.post_content}</span></dd>
+                                        </dl>
+                                        <hr>
+                                        <input class="medium-input margin-25px-bottom xs-margin-10px-bottom required" type="text" name="cmt_title" placeholder="이름을 추천해주세요">
+                                        <textarea class="medium-textarea xs-h-100px xs-margin-10px-bottom" rows="6" name="cmt_content" placeholder="이름에 대한 설명을 작성해주세요"></textarea>
+                                        <input type="hidden" name="post_id" value="${post.post_id}">
+                                        <input type="hidden" name="page" value="${pageBean.currentPage}">
+                                        <input type="hidden" name="device_type">
+                                        <button class="btn btn-medium btn-gradient-sky-blue-pink mb-0" type="submit">추천하기</button>
+                                        <div class="form-results d-none"></div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- end contact form -->
                         </li>
                     </c:forEach>
                     <!-- end blog item -->
@@ -168,3 +200,15 @@
 </section>
 <!-- end section -->
 <c:import url="/inc/bottom"/>
+<script>
+    let filter = "win16|win32|win64|mac|macintel";
+    if ( navigator.platform ) {
+        if ( filter.indexOf( navigator.platform.toLowerCase() ) < 0 ) {
+            //mobile alert('mobile 접속');
+            $('input[name=device_type]').val('2');
+        } else {
+            //pc alert('pc 접속');
+            $('input[name=device_type]').val('1');
+        }
+    }
+</script>

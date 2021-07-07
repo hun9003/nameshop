@@ -1,6 +1,7 @@
 package com.rateye.service;
 
 import com.rateye.dao.PostDAO;
+import com.rateye.domain.CommentBean;
 import com.rateye.domain.ImageBean;
 import com.rateye.domain.PostBean;
 import org.springframework.stereotype.Service;
@@ -62,5 +63,11 @@ public class PostServiceImpl implements PostService {
 	public List<PostBean> getPostList(Map<String, Object> listMap) {
 		System.out.println("PostServiceImpl - getPostList()");
 		return postDAO.getPostList(listMap);
+	}
+
+	@Override
+	public int insertComment(CommentBean commentBean) {
+		System.out.println("PostServiceImpl - insertComment()");
+		return postDAO.insertComment(commentBean);
 	}
 }

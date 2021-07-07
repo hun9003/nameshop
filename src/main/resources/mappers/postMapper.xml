@@ -86,4 +86,9 @@
         </trim>
         LIMIT #{pageBean.startRow},#{pageBean.pageSize};
     </select>
+
+    <insert id="insertComment">
+        INSERT INTO comment (cmt_id, post_id, cmt_title, cmt_content, mem_id, cmt_datetime, cmt_ip, cmt_device) VALUES
+                    (null,#{post_id},#{cmt_title},#{cmt_content},#{mem_id},#{cmt_datetime},#{cmt_ip},#{cmt_device})
+    </insert>
 </mapper>

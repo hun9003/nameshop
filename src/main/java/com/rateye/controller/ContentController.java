@@ -1,10 +1,7 @@
 package com.rateye.controller;
 
 
-import com.rateye.domain.ImageBean;
-import com.rateye.domain.MemberBean;
-import com.rateye.domain.PageBean;
-import com.rateye.domain.PostBean;
+import com.rateye.domain.*;
 import com.rateye.service.MemberService;
 import com.rateye.service.PostService;
 import com.rateye.util.ScriptUtils;
@@ -45,6 +42,8 @@ import java.util.Map;
  *     수정일         수정자           수정내용
  *  ------------   --------    ---------------------------
  *   2021.06.30     박진훈          최초 생성
+ *   2021.07.05     박진훈         게시물 등록 구현
+ *   2021.07.07     박진훈         이름 추천 구현
  *
  * Copyright (C) 2021 by Rateye  All right reserved.
  * </pre>
@@ -262,6 +261,43 @@ public class ContentController {
         } else {
             model.addAttribute("msg", StrResources.MSG_WRITE_SUCCESS);
             model.addAttribute("url", "/list");
+        }
+
+
+        return StrResources.MESSAGE_PAGE;
+    }
+
+    @RequestMapping(value = "/comment", method = RequestMethod.POST)
+    public String comment(HttpSession session, Model model, HttpServletRequest request,
+                          @RequestParam (value = "post_id") int post_id,
+                          @RequestParam (value = "cmt_title") String cmt_title,
+                          @RequestParam (value = "cmt_content") String cmt_content,
+                          @RequestParam (value = "device_type") int cmt_device,
+                          @RequestParam (value = "page", required = false, defaultValue = "1") int page) {
+        System.out.println("ContentController - comment() :: POST");
+        /*
+        로그인을 안했을 시 로그인 페이지로 이동
+         */
+        if (!StrResources.CHECK_LOGIN(session)) {
+            model.addAttribute("msg", StrResources.MSG_LOGIN_EMPTY);
+            model.addAttribute("url", "/login");
+            return StrResources.MESSAGE_PAGE;
+        }
+        MemberBean memberBean = (MemberBean) session.getAttribute("member");
+        CommentBean commentBean = new CommentBean();
+        commentBean.setPost_id(post_id);
+        commentBean.setCmt_title(cmt_title);
+        commentBean.setCmt_content(cmt_content);
+        commentBean.setCmt_device(cmt_device);
+        commentBean.setMem_id(memberBean.getMem_id());
+        commentBean.setCmt_datetime(new Timestamp(System.currentTimeMillis()));
+        commentBean.setCmt_ip(ScriptUtils.getIp(request));
+
+        if(postService.insertComment(commentBean) == 0) {
+            model.addAttribute("msg", StrResources.MSG_WRITE_FAIL);
+        } else {
+            model.addAttribute("msg", StrResources.MSG_WRITE_SUCCESS);
+            model.addAttribute("url", "/list?page="+page);
         }
 
 

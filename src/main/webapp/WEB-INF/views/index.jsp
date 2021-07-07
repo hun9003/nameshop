@@ -243,31 +243,21 @@
             <div class="col-12 col-xl-6 col-lg-7 col-md-9 margin-3-rem-top sm-margin-6-rem-top">
                 <div class="swiper-container swiper-pagination-bottom black-move" data-slider-options='{ "slidesPerView": 1, "loop": true, "pagination": { "el": ".swiper-pagination", "clickable": true }, "autoplay": { "delay": 4500, "disableOnInteraction": false }, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
                     <div class="swiper-wrapper">
+                        <c:forEach items="${posts}" var="post">
                         <!-- start testimonial item -->
                         <div class="swiper-slide text-center">
-                            <img alt="" class="d-inline-block rounded-circle margin-3-half-rem-bottom sm-margin-4-rem-bottom" src="https://static-cdn.jtvnw.net/jtv_user_pictures/b9dab0b5-0890-435b-ab02-4897fc739591-profile_image-300x300.png">
-                            <span class="alt-font text-extra-large line-height-40px font-weight-300 letter-spacing-minus-1-half d-inline-block w-95 margin-3-half-rem-bottom">메이플 스카니아서버 길드 창설하는데 길드명 추천 해주세요!</span>
-                            <h6 class="alt-font font-weight-300 text-gradient-red-violet-purple mb-0 d-inline-block"><span class="font-weight-600">지존법사</span></h6>
-                            <span class="alt-font text-uppercase d-block">5분전</span>
-                            <a href="#" class="btn btn-medium btn-gradient-fast-blue-purple md-margin-auto-lr font-weight-bold"><spring:message code="button.home.write.name"/></a>
+                            <img alt="대표 이미지" style="background-color: #e2e2e2;" class="d-inline-block rounded-circle margin-3-half-rem-bottom sm-margin-4-rem-bottom" src="<c:choose>
+                                    <c:when test="${post.img_id != 0}">${post.post_image}</c:when>
+                                    <c:otherwise><c:url value="/resources/images/logo@2x.png"/></c:otherwise>
+                                    </c:choose>">
+                            <span class="alt-font text-extra-large line-height-40px font-weight-300 letter-spacing-minus-1-half d-inline-block w-95 margin-3-half-rem-bottom">${post.post_title}</span>
+                            <h6 class="alt-font font-weight-300 text-gradient-red-violet-purple mb-0 d-inline-block"><span class="font-weight-600">${post.post_name}</span></h6>
+                            <span id="post_date${post.post_id}" class="alt-font text-uppercase d-block"></span>
+                            <script>document.getElementById('post_date${post.post_id}').innerHTML = timeForToday('${post.post_datetime}');</script>
+                            <a href="<c:url value="/list"/>" class="btn btn-medium btn-gradient-fast-blue-purple md-margin-auto-lr font-weight-bold"><spring:message code="button.home.write.name"/></a>
                         </div>
                         <!-- end testimonial item -->
-                        <!-- start testimonial item -->
-                        <div class="swiper-slide text-center">
-                            <img alt="" class="d-inline-block rounded-circle margin-3-half-rem-bottom" src="https://placehold.it/131x131">
-                            <span class="alt-font text-extra-large line-height-40px font-weight-300 letter-spacing-minus-1-half d-inline-block w-95 margin-3-half-rem-bottom">Absolutely amazing theme, flexible and awesome design with possibilities. It's so very easy to use and to customize. Simply the great designs and best theme for WooCommerce, loading fast, customisable.</span>
-                            <h6 class="alt-font font-weight-300 text-gradient-red-violet-purple mb-0 d-inline-block"><span class="font-weight-600">Jeremy</span> dupont</h6>
-                            <span class="alt-font text-uppercase d-block">Creative director</span>
-                        </div>
-                        <!-- end testimonial item -->
-                        <!-- start testimonial item -->
-                        <div class="swiper-slide text-center">
-                            <img alt="" class="d-inline-block rounded-circle margin-3-half-rem-bottom" src="https://placehold.it/131x131">
-                            <span class="alt-font text-extra-large line-height-40px font-weight-300 letter-spacing-minus-1-half d-inline-block w-95 margin-3-half-rem-bottom">There are design companies and then there are user experience, design, consulting, interface design. Simply the great designs and best theme for WooCommerce, loading fast, customisable and easy to use.</span>
-                            <h6 class="alt-font font-weight-300 text-gradient-red-violet-purple mb-0 d-inline-block"><span class="font-weight-600">Lindsay</span> swanson</h6>
-                            <span class="alt-font text-uppercase d-block">Creative director</span>
-                        </div>
-                        <!-- end testimonial item -->
+                        </c:forEach>
                     </div>
                     <!-- start slider pagination -->
                     <div class="swiper-pagination"></div>

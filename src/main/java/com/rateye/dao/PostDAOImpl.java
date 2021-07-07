@@ -1,5 +1,6 @@
 package com.rateye.dao;
 
+import com.rateye.domain.CommentBean;
 import com.rateye.domain.ImageBean;
 import com.rateye.domain.PostBean;
 import org.apache.ibatis.session.SqlSession;
@@ -64,5 +65,11 @@ public class PostDAOImpl implements PostDAO {
 	public List<PostBean> getPostList(Map<String, Object> listMap) {
 		System.out.println("PostDAOImpl - getPostList()");
 		return sqlSession.selectList(namespace+".getPostList", listMap);
+	}
+
+	@Override
+	public int insertComment(CommentBean commentBean) {
+		System.out.println("PostDAOImpl - insertComment()");
+		return sqlSession.insert(namespace+".insertComment", commentBean);
 	}
 }

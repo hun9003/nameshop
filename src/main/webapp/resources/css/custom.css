@@ -27,3 +27,13 @@
     word-break: keep-all;
     padding-top: 10px;
 }
+
+.post-card-content dt {
+    float: left;
+    width: 40%;
+    padding-top: 10px;
+}
+
+.post-card-content dd {
+    padding-top: 10px;
+}

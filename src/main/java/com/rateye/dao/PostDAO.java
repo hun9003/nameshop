@@ -1,6 +1,7 @@
 package com.rateye.dao;
 
 
+import com.rateye.domain.CommentBean;
 import com.rateye.domain.ImageBean;
 import com.rateye.domain.PostBean;
 
@@ -38,4 +39,6 @@ public interface PostDAO {
     int getPostCount(Map<String, Object> listMap);
 
     List<PostBean> getPostList(Map<String, Object> listMap);
+
+    int insertComment(CommentBean commentBean);
 }
