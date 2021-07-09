@@ -8,6 +8,8 @@ import com.rateye.domain.MemberLoginLogBean;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+
 /**
  * 회원 관리를 위한 DAO 클래스
  *
@@ -136,5 +138,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public int updatePassword(MemberBean memberBean) {
 		System.out.println("MemberDAOImpl - updatePassword()");
 		return sqlSession.update(namespace+".updatePassword", memberBean);
+	}
+
+	@Override
+	public HashMap<String, Integer> getMemberWrite(int mem_id) {
+		System.out.println("MemberDAOImpl - getMemberWrite()");
+		return sqlSession.selectOne(namespace+".getMemberWrite", mem_id);
 	}
 }

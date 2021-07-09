@@ -81,4 +81,11 @@
     <update id="updatePassword">
         UPDATE member SET mem_password = #{mem_password} WHERE mem_email = #{mem_email}
     </update>
+
+    <select id="getMemberWrite" resultType="hashmap">
+        SELECT (SELECT count(post_id) FROM post WHERE mem_id = #{mem_id} and post_close = 0) AS post_write,
+               (SELECT count(post_id) FROM post WHERE mem_id = #{mem_id} and post_close = 1) AS post_close,
+               (SELECT count(cmt_id) FROM comment WHERE mem_id = #{mem_id} and cmt_close = 0) AS comment_write,
+               (SELECT count(cmt_id) FROM comment WHERE mem_id = #{mem_id} and cmt_close = 1) AS comment_close
+    </select>
 </mapper>

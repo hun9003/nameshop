@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.rateye.dao.MemberDAO;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 
 /**
  * 회원 관리를 위한 서비스 클래스
@@ -125,5 +126,11 @@ public class MemberServiceImpl implements MemberService {
 	public int updatePassword(MemberBean memberBean) {
 		System.out.println("MemberServiceImpl - updatePassword()");
 		return memberDAO.updatePassword(memberBean);
+	}
+
+	@Override
+	public HashMap<String, Integer> getMemberWrite(int mem_id) {
+		System.out.println("MemberServiceImpl - getMemberWrite()");
+		return memberDAO.getMemberWrite(mem_id);
 	}
 }

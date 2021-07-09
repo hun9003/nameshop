@@ -36,7 +36,7 @@
                     <div class="padding-fifteen-all bg-white border-radius-6px xs-padding-six-all">
                         <h6 class="text-extra-dark-gray font-weight-500 margin-35px-bottom xs-margin-15px-bottom"><spring:message code="content.write.form.description"/></h6>
                         <div>
-                            <div class="col-12 col-12-large margin-20px-bottom text-center"><img id="post-image" class="profile_photo col-6" style="background-color: #e2e2e2; cursor: pointer;" src="<c:url value="/resources/images/logo@2x.png"/>" alt="대표 이미지" onclick="get_photo()"></div>
+                            <div class="col-12 col-12-large margin-20px-bottom text-center"><img id="post-image" class="profile_photo col-6" style="background-color: #e2e2e2; cursor: pointer;" src="<c:url value="/resources/images/logo@2x.png"/>" alt="<spring:message code="label.post.image"/>" onclick="get_photo()"></div>
                             <input type="file" style="display: none;" id="post-image-input" name="image">
                             <input class="medium-input margin-25px-bottom xs-margin-10px-bottom required" type="text" name="post_title" placeholder="<spring:message code="label.write.subject"/>">
                             <input class="medium-input margin-25px-bottom xs-margin-10px-bottom required" id="tag-box" type="text" placeholder="<spring:message code="label.write.tag"/>">

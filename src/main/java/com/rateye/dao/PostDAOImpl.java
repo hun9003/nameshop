@@ -72,4 +72,10 @@ public class PostDAOImpl implements PostDAO {
 		System.out.println("PostDAOImpl - insertComment()");
 		return sqlSession.insert(namespace+".insertComment", commentBean);
 	}
+
+	@Override
+	public void updateCommentCount(CommentBean commentBean) {
+		System.out.println("PostDAOImpl - updateCommentCount()");
+		sqlSession.update(namespace+".updateCommentCount", commentBean);
+	}
 }

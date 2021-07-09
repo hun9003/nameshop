@@ -246,7 +246,7 @@
                         <c:forEach items="${posts}" var="post">
                         <!-- start testimonial item -->
                         <div class="swiper-slide text-center">
-                            <img alt="대표 이미지" style="background-color: #e2e2e2;" class="d-inline-block rounded-circle margin-3-half-rem-bottom sm-margin-4-rem-bottom" src="<c:choose>
+                            <img alt="<spring:message code="label.post.image"/>" style="background-color: #e2e2e2;" class="d-inline-block rounded-circle margin-3-half-rem-bottom sm-margin-4-rem-bottom" src="<c:choose>
                                     <c:when test="${post.img_id != 0}">${post.post_image}</c:when>
                                     <c:otherwise><c:url value="/resources/images/logo@2x.png"/></c:otherwise>
                                     </c:choose>">

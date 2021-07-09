@@ -61,30 +61,30 @@
                                 </div>
                             </div>
                             <!-- start contact form -->
-                            <form id="comment-form${post.post_id}" action="<c:url value="/write"/>" method="post" class="white-popup-block col-xl-4 col-lg-7 col-sm-9 p-0 mx-auto mfp-hide">
+                            <form id="comment-form${post.post_id}" action="<c:url value="/comment"/>" method="post" class="white-popup-block col-xl-4 col-lg-7 col-sm-9 p-0 mx-auto mfp-hide">
                                 <div class="padding-fifteen-all bg-white border-radius-6px xs-padding-six-all">
-                                    <h6 class="text-extra-dark-gray font-weight-500 margin-35px-bottom xs-margin-15px-bottom">추천 해주실 이름이 있으십니까?</h6>
-                                    <p class="text-primary">현재 0명이 추천에 참여중입니다!</p>
+                                    <h6 class="text-extra-dark-gray font-weight-500 margin-35px-bottom xs-margin-15px-bottom"><spring:message code="content.list.form.subject"/></h6>
+                                    <p class="text-primary"><spring:message code="content.list.form.content" arguments="${post.post_comment_count}"/></p>
                                     <div>
                                         <div class="col-12 col-12-large margin-20px-bottom text-center"><img class="profile_photo col-6" style="background-color: #e2e2e2; cursor: pointer;" src="<c:choose>
                                     <c:when test="${post.img_id != 0}">${post.post_image}</c:when>
                                     <c:otherwise><c:url value="/resources/images/logo@2x.png"/></c:otherwise>
-                                    </c:choose>" alt="대표 이미지"></div>
+                                    </c:choose>" alt="<spring:message code="label.post.image"/>"></div>
                                         <dl class="post-card-content">
-                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">제목</span></dt>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.write.subject"/></span></dt>
                                             <dd><span class="alt-font text-extra-dark-gray d-inline-block">${post.post_title}</span></dd>
-                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">카테고리</span></dt>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.write.category"/></span></dt>
                                             <dd><span class="alt-font text-extra-dark-gray d-inline-block">${post.post_category}</span></dd>
-                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500">내용</span></dt>
+                                            <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.write.content"/></span></dt>
                                             <dd><span class="alt-font text-extra-dark-gray d-inline-block">${post.post_content}</span></dd>
                                         </dl>
                                         <hr>
-                                        <input class="medium-input margin-25px-bottom xs-margin-10px-bottom required" type="text" name="cmt_title" placeholder="이름을 추천해주세요">
-                                        <textarea class="medium-textarea xs-h-100px xs-margin-10px-bottom" rows="6" name="cmt_content" placeholder="이름에 대한 설명을 작성해주세요"></textarea>
+                                        <input class="medium-input margin-25px-bottom xs-margin-10px-bottom required" type="text" name="cmt_title" placeholder="<spring:message code="content.list.form.title"/>">
+                                        <textarea class="medium-textarea xs-h-100px xs-margin-10px-bottom" rows="6" name="cmt_content" placeholder="<spring:message code="content.list.form.description"/>"></textarea>
                                         <input type="hidden" name="post_id" value="${post.post_id}">
                                         <input type="hidden" name="page" value="${pageBean.currentPage}">
                                         <input type="hidden" name="device_type">
-                                        <button class="btn btn-medium btn-gradient-sky-blue-pink mb-0" type="submit">추천하기</button>
+                                        <button class="btn btn-medium btn-gradient-sky-blue-pink mb-0" type="submit"><spring:message code="button.list.submit"/></button>
                                         <div class="form-results d-none"></div>
                                     </div>
                                 </div>

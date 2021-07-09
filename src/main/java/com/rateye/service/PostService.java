@@ -40,4 +40,6 @@ public interface PostService {
     List<PostBean> getPostList(Map<String, Object> listMap);
 
     int insertComment(CommentBean commentBean);
+
+    void updateCommentCount(CommentBean commentBean);
 }

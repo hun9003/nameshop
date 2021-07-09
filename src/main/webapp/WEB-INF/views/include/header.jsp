@@ -21,12 +21,6 @@
                 </a>
             </div>
             <div class="col-auto col-lg-8 md-position-initial md-no-padding">
-                <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-line"></span>
-                    <span class="navbar-toggler-line"></span>
-                    <span class="navbar-toggler-line"></span>
-                    <span class="navbar-toggler-line"></span>
-                </button>
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav alt-font">
                         <li class="nav-item dropdown megamenu">
@@ -72,6 +66,28 @@
                     <c:choose>
                         <c:when test="${sessionScope.member != null}">
                             <a href="<c:url value="/my"/>" title="<spring:message code="title.profile"/>"><i class="fas fa-user"></i></a>
+                            <div class="header-cart-icon dropdown">
+                                <a href="javascript:void(0);"><i class="fas fa-bell"></i><span class="cart-count alt-font bg-fast-blue text-white">0</span></a>
+                                <ul class="dropdown-menu cart-item-list">
+                                    <li class="cart-item align-items-center">
+                                        <a href="javascript:void(0);" class="alt-font close">×</a>
+                                        <div class="product-detail alt-font">
+                                            <a href="single-product.html">새로운 이름 추천이 있습니다</a>
+                                            <span class="item-ammount">실험용3asdasdasdasdasfasdfsdfsdfsaddfsdafasdasdasdasdasdsadsdfsd</span>
+                                        </div>
+                                    </li>
+                                    <li class="cart-item align-items-center">
+                                        <a href="javascript:void(0);" class="alt-font close">×</a>
+                                        <div class="product-detail alt-font">
+                                            <a href="single-product.html">새로운 이름 추천이 있습니다</a>
+                                            <span class="item-ammount">실험용3</span>
+                                        </div>
+                                    </li>
+                                    <li class="cart-item cart-total">
+                                        <a href="<c:url value="/noti"/>" class="btn btn-small btn-dark-gray">전체 보기</a>
+                                    </li>
+                                </ul>
+                            </div>
                             <a href="#logout-box" class="popup-with-form" title="<spring:message code="title.logout"/>"><i class="fas fa-sign-out-alt"></i></a>
                             <!-- start logout message -->
                             <div id="logout-box" class="white-popup-block col-xl-4 col-lg-7 col-sm-9 p-0 mx-auto mfp-hide">
@@ -89,6 +105,12 @@
                             <a href="<c:url value="/login"/>" title="<spring:message code="title.login"/>"><i class="fas fa-sign-in-alt"></i></a>
                         </c:otherwise>
                     </c:choose>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-line"></span>
+                        <span class="navbar-toggler-line"></span>
+                        <span class="navbar-toggler-line"></span>
+                        <span class="navbar-toggler-line"></span>
+                    </button>
                 </div>
             </div>
         </div>

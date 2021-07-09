@@ -61,10 +61,10 @@
                                 <div class="panel-title">
                                     <p class="alt-font text-extra-dark-gray font-weight-500"><spring:message code="label.member.info.activity"/></p>
                                     <dl class="profile-card-content">
-                                        <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.activity.month"/></span></dt>
-                                        <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.activity.count" arguments="5"/></span></dd>
                                         <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.activity.total"/></span></dt>
-                                        <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.activity.count" arguments="5"/></span></dd>
+                                        <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.activity.count" arguments="${writeBean.comment_write}"/></span></dd>
+                                        <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.activity.adopt"/></span></dt>
+                                        <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.activity.count" arguments="${writeBean.comment_close}"/></span></dd>
                                     </dl>
                                     <i class="indicator fas fa-angle-down text-extra-dark-gray icon-extra-small"></i>
                                 </div>
@@ -87,9 +87,9 @@
                                     <p class="alt-font text-extra-dark-gray font-weight-500"><spring:message code="label.member.info.use"/></p>
                                     <dl class="profile-card-content">
                                         <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.use.registration"/></span></dt>
-                                        <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.use.count" arguments="0"/></span></dd>
+                                        <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.use.count" arguments="${writeBean.post_write}"/></span></dd>
                                         <dt><span class="alt-font text-extra-dark-gray d-inline-block font-weight-500"><spring:message code="label.member.info.use.adopt"/></span></dt>
-                                        <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.use.count" arguments="5"/></span></dd>
+                                        <dd><span class="alt-font text-extra-dark-gray d-inline-block"><spring:message code="label.member.info.use.count" arguments="${writeBean.post_close}"/></span></dd>
                                     </dl>
                                     <i class="indicator fas fa-angle-down text-extra-dark-gray icon-extra-small"></i>
                                 </div>

@@ -84,7 +84,12 @@ public class ContentController {
     /**
      * 이름 추천 리스트 페이지
      * @param session 세션
-     * @param model 뷰에 전달할 객체
+     * @param model 모델
+     * @param page 현재 페이지 기본값 1
+     * @param order_type 리스트 정렬 순서 
+     * @param search_type 검색 타입
+     * @param search_content 검색 내용
+     * @param size 페이지 사이즈 기본값 12
      * @return "/pages/content-list"
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -156,12 +161,11 @@ public class ContentController {
 
     /**
      * 고객 지원 페이지
-     * @param session 세션
      * @param model 뷰에 전달할 객체
      * @return "/pages/contact"
      */
     @RequestMapping(value = "/help", method = RequestMethod.GET)
-    public String helpPage(HttpSession session, Model model) {
+    public String helpPage(Model model) {
         System.out.println("ContentController - helpPage() :: GET");
         String title = "help"; // 고객지원
 
@@ -169,6 +173,17 @@ public class ContentController {
         return StrResources.CONTACT_PAGE;
     }
 
+    /**
+     * 게시물 생성 기능
+     * @param session 세션
+     * @param model 모델
+     * @param postBean 게시물 빈
+     * @param request 요청
+     * @param response 응답
+     * @param image 대표 이미지 파일
+     * @return "/common/message"
+     * @throws IOException 파일 관련 예외 처리
+     */
     @RequestMapping(value = "/write", method = RequestMethod.POST)
     public String write(HttpSession session, Model model, PostBean postBean, HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile image) throws IOException {
         System.out.println("ContentController - write() :: POST");
@@ -180,6 +195,8 @@ public class ContentController {
             model.addAttribute("url", "/login");
             return StrResources.MESSAGE_PAGE;
         }
+
+        // 회원 정보 저장
         MemberBean memberBean = (MemberBean) session.getAttribute("member");
 
         String fileUrl = null;
@@ -225,10 +242,10 @@ public class ContentController {
             // 지정된 바이트를 출력 스트립에 쓴다 (출력하기 위해서)
             out.write(bytes);
 
+            // 파일 경로 저장
             fileUrl ="/"+uploadPath + fileName;
 
-
-
+            // 이미지 정보 저장
             ImageBean imageBean = new ImageBean();
             imageBean.setMem_id(memberBean.getMem_id());
             imageBean.setImg_originname(fileName);
@@ -244,11 +261,14 @@ public class ContentController {
             } catch (Exception e) {
                 System.out.println("이미지를 읽을 수 없음");
            }
+
+            // 이미지 정보 데이터베이스에 전송
             postService.insertImage(imageBean);
             postBean.setImg_id(postService.getMaxImgId()+1);
             postBean.setPost_image(fileUrl);
         }
 
+        // 게시물 정보 저장
         postBean.setMem_id(memberBean.getMem_id());
         postBean.setPost_email(memberBean.getMem_email());
         postBean.setPost_name(memberBean.getMem_name());
@@ -256,6 +276,7 @@ public class ContentController {
         postBean.setPost_device(Integer.parseInt(request.getParameter("device_type")));
         postBean.setPost_ip(ScriptUtils.getIp(request));
 
+        // 게시물 정보 데이터베이스에 전송
         if(postService.insertPost(postBean) == 0) {
             model.addAttribute("msg", StrResources.MSG_WRITE_FAIL);
         } else {
@@ -263,10 +284,21 @@ public class ContentController {
             model.addAttribute("url", "/list");
         }
 
-
         return StrResources.MESSAGE_PAGE;
     }
 
+    /**
+     * 이름 추천 기능
+     * @param session 세션
+     * @param model 모델
+     * @param request 요청
+     * @param post_id 대상 게시물 PK
+     * @param cmt_title 추천한 이름
+     * @param cmt_content 이름 설명
+     * @param cmt_device 디바이스 타입
+     * @param page 현재 페이지 저장
+     * @return "/common/message"
+     */
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public String comment(HttpSession session, Model model, HttpServletRequest request,
                           @RequestParam (value = "post_id") int post_id,
@@ -283,7 +315,11 @@ public class ContentController {
             model.addAttribute("url", "/login");
             return StrResources.MESSAGE_PAGE;
         }
+
+        // 회원 정보 저장
         MemberBean memberBean = (MemberBean) session.getAttribute("member");
+
+        // 이름 추천 정보 저장
         CommentBean commentBean = new CommentBean();
         commentBean.setPost_id(post_id);
         commentBean.setCmt_title(cmt_title);
@@ -293,13 +329,14 @@ public class ContentController {
         commentBean.setCmt_datetime(new Timestamp(System.currentTimeMillis()));
         commentBean.setCmt_ip(ScriptUtils.getIp(request));
 
+        // 이름 추천 정보 데이터베이스에 전송
         if(postService.insertComment(commentBean) == 0) {
             model.addAttribute("msg", StrResources.MSG_WRITE_FAIL);
         } else {
+            postService.updateCommentCount(commentBean);
             model.addAttribute("msg", StrResources.MSG_WRITE_SUCCESS);
             model.addAttribute("url", "/list?page="+page);
         }
-
 
         return StrResources.MESSAGE_PAGE;
     }

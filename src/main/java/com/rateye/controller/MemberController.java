@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
+import java.util.HashMap;
 
 /**
  * 회원 관리를 위한 컨트롤러 클래스
@@ -87,6 +88,7 @@ public class MemberController {
 
         model.addAttribute("referrer", referrer);
         model.addAttribute("title", title);
+        // 로그인 실패시 메세지 출력용
         model.addAttribute("mode", request.getParameter("mode"));
         return StrResources.LOGIN_PAGE;
     }
@@ -111,16 +113,24 @@ public class MemberController {
             model.addAttribute("url", "/login");
             return StrResources.MESSAGE_PAGE;
         }
+        // 회원 정보 저장
+        MemberBean memberBean = (MemberBean) session.getAttribute("member");
 
+        // 사이트 이용 현황 정보 저장
+        HashMap<String, Integer> writeBean = memberService.getMemberWrite(memberBean.getMem_id());
+
+        model.addAttribute("writeBean", writeBean);
         model.addAttribute("title", title);
         return StrResources.PROFILE_PAGE;
     }
 
     /**
      * 회원가입
-     *
      * @param session 세션
-     * @return
+     * @param request 요청
+     * @param model 모델
+     * @param memberBean 회원 정보
+     * @return "/common/message"
      */
     @RequestMapping(value = "/join", method = RequestMethod.POST)
     public String join(HttpSession session, HttpServletRequest request, Model model, MemberBean memberBean) {
@@ -133,6 +143,7 @@ public class MemberController {
             model.addAttribute("url", "/");
             return StrResources.MESSAGE_PAGE;
         }
+        // 비밀번호 보안용 해시화
         memberBean.setMem_password(new LoginAPI().SALT(memberBean.getMem_password()));
         memberBean.setMem_register_ip(ScriptUtils.getIp(request));
 
@@ -146,7 +157,13 @@ public class MemberController {
         return StrResources.MESSAGE_PAGE;
     }
 
-    // 이메일 전송 ajax
+    /**
+     * 이메일 전송 ajax
+     * @param request 요청
+     * @param mailBean 메일 정보
+     * @return AJAX 결과 전송
+     * @throws UnsupportedEncodingException 인코딩 예외 처리
+     */
     @RequestMapping(value = "/sendMail", method = RequestMethod.GET)
     public ResponseEntity<String> sandMail(HttpServletRequest request, final MailBean mailBean) throws UnsupportedEncodingException {
         System.out.println("MemberController - sendMail() :: GET /sandMail");
@@ -215,7 +232,12 @@ public class MemberController {
         return entity;
     }
 
-    // 이메일 코드 인증
+    /**
+     * 이메일 코드 인증
+     * @param memberAuthEmailBean 이메일 코드 정보
+     * @param request 요청
+     * @return AJAX 결과
+     */
     @RequestMapping(value = "/checkMail", method = RequestMethod.GET)
     public ResponseEntity<String> checkMail(MemberAuthEmailBean memberAuthEmailBean, HttpServletRequest request) {
         System.out.println("MemberController - checkMail :: GET /checkMail");
@@ -249,6 +271,12 @@ public class MemberController {
         return entity;
     }
 
+    /**
+     * 이메일 중복 체크
+     * @param request 요청
+     * @return AJAX 결과
+     * @throws UnsupportedEncodingException 인코딩 예외
+     */
     @RequestMapping(value = "/ckEmail", method = RequestMethod.GET)
     public ResponseEntity<String> emailCheck(HttpServletRequest request) throws UnsupportedEncodingException {
         System.out.println("MemberController - emailCheck() :: GET /ckEmail");
@@ -274,6 +302,12 @@ public class MemberController {
         return entity;
     }
 
+    /**
+     * 닉네임 중복 체크
+     * @param request 요청
+     * @return AJAX 결과
+     * @throws UnsupportedEncodingException 인코딩 예외
+     */
     @RequestMapping(value = "/ckName", method = RequestMethod.GET)
     public ResponseEntity<String> nameCheck(HttpServletRequest request) throws UnsupportedEncodingException {
         System.out.println("MemberController - nameCheck() :: GET /ckName");
@@ -299,6 +333,15 @@ public class MemberController {
         return entity;
     }
 
+    /**
+     * 로그인
+     * @param userAgent 사이트 유저 정보
+     * @param memberBean 회원 정보
+     * @param model 모델
+     * @param session 세션
+     * @param request 요청
+     * @return "/"
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPost(@RequestHeader(value = "User-Agent") String userAgent, MemberBean memberBean, Model model, HttpSession session, HttpServletRequest request) {
         System.out.println("MemberController - loginPost");
@@ -315,6 +358,7 @@ public class MemberController {
         Timestamp nowTime = new Timestamp(System.currentTimeMillis());
         String nowIp = ScriptUtils.getIp(request);
 
+        // 로그인 로그 기록 정보 저장
         MemberLoginLogBean memberLoginLogBean = new MemberLoginLogBean();
         memberLoginLogBean.setMem_id(0);
         memberLoginLogBean.setMll_email(memberBean.getMem_email());
@@ -358,6 +402,11 @@ public class MemberController {
         return StrResources.REDIRECT + "/";
     }
 
+    /**
+     * 로그아웃
+     * @param session 세션
+     * @return "/login"
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         System.out.println("MemberController - logout :: GET /logout");
@@ -365,6 +414,13 @@ public class MemberController {
         return StrResources.REDIRECT+"/login";
     }
 
+    /**
+     * 비밀번호 찾기 페이지
+     * @param session 세션
+     * @param model 모델
+     * @param request 요청
+     * @return "/member/forget"
+     */
     @RequestMapping(value = "/forget", method = RequestMethod.GET)
     public String forget(HttpSession session, Model model, HttpServletRequest request) {
         System.out.println("MemberController - forget :: GET /forget");
@@ -374,17 +430,23 @@ public class MemberController {
         }
 
         model.addAttribute("mode", request.getParameter("mode"));
-
         return StrResources.FORGET_PAGE;
     }
 
+    /**
+     * 비밀번호 변경 페이지
+     * @param model 모델
+     * @param request 요청
+     * @param session 세션
+     * @return "/member/change-password"
+     */
     @RequestMapping(value = "/changePass", method = RequestMethod.GET)
     public String changePass(Model model, HttpServletRequest request, HttpSession session) {
         System.out.println("MemberController - changePass :: GET /changePass");
         MemberAuthEmailBean memberAuthEmailBean = new MemberAuthEmailBean();
         memberAuthEmailBean.setMem_email(request.getParameter("mem_email"));
-        memberAuthEmailBean.setMae_type(2);
-        memberAuthEmailBean.setMae_expired(1);
+        memberAuthEmailBean.setMae_type(2); // 비밀번호 찾기 타입
+        memberAuthEmailBean.setMae_expired(1); // 이미 코드가 사용되었는지 확인
         MemberAuthEmailBean checkEmailCode = memberService.checkUseCode(memberAuthEmailBean);
         if(checkEmailCode == null) {
             model.addAttribute("msg", StrResources.MSG_NOT_USE_CODE);
@@ -398,6 +460,13 @@ public class MemberController {
         return StrResources.CHANGE_PAGE;
     }
 
+    /**
+     * 비밀번호 변경
+     * @param model 모델
+     * @param session 세션
+     * @param mem_password 비밀번호
+     * @return "/common/message"
+     */
     @RequestMapping(value = "/changePass", method = RequestMethod.POST)
     public String changePass_post(Model model, HttpSession session, @RequestParam (value = "mem_password", required = false) String mem_password) {
         System.out.println("MemberController - changePass_post :: POST /changePass");
@@ -420,6 +489,22 @@ public class MemberController {
         model.addAttribute("msg", StrResources.MSG_PASSWORD_CHANGE_SUCCESS);
         model.addAttribute("url", "/login");
         return StrResources.MESSAGE_PAGE;
+    }
+
+
+    @RequestMapping(value = "/noti", method = RequestMethod.GET)
+    public String notification(Model model, HttpServletRequest request, HttpSession session) {
+        System.out.println("MemberController - notification :: GET /noti");
+
+        // 로그인 여부 확인
+        if (!StrResources.CHECK_LOGIN(session)) {
+            model.addAttribute("msg", StrResources.MSG_LOGIN_EMPTY);
+            model.addAttribute("url", "/login");
+            return StrResources.MESSAGE_PAGE;
+        }
+
+
+        return StrResources.NOTIFICATION_PAGE;
     }
 }
 
