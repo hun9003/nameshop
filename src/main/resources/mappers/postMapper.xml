@@ -95,4 +95,8 @@
     <update id="updateCommentCount">
         UPDATE post SET post_comment_count = post_comment_count+1, post_updated_datetime = #{cmt_datetime} WHERE post_id = #{post_id}
     </update>
+
+    <select id="getPost" resultType="post">
+        SELECT * FROM post WHERE post_id = #{post_id}
+    </select>
 </mapper>

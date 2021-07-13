@@ -5,10 +5,12 @@ import javax.inject.Inject;
 import com.rateye.domain.MemberAuthEmailBean;
 import com.rateye.domain.MemberBean;
 import com.rateye.domain.MemberLoginLogBean;
+import com.rateye.domain.PostBean;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 회원 관리를 위한 DAO 클래스
@@ -144,5 +146,17 @@ public class MemberDAOImpl implements MemberDAO {
 	public HashMap<String, Integer> getMemberWrite(int mem_id) {
 		System.out.println("MemberDAOImpl - getMemberWrite()");
 		return sqlSession.selectOne(namespace+".getMemberWrite", mem_id);
+	}
+
+	@Override
+	public List<PostBean> getPost(MemberBean memberBean) {
+		System.out.println("MemberDAOImpl - getPost()");
+		return sqlSession.selectList(namespace+".getPost", memberBean);
+	}
+
+	@Override
+	public List<PostBean> getCommentPost(MemberBean memberBean) {
+		System.out.println("MemberDAOImpl - getCommentPost()");
+		return sqlSession.selectList(namespace+".getCommentPost", memberBean);
 	}
 }

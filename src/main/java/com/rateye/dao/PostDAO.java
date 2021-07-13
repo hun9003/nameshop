@@ -43,4 +43,6 @@ public interface PostDAO {
     int insertComment(CommentBean commentBean);
 
     void updateCommentCount(CommentBean commentBean);
+
+    PostBean getPost(int post_id);
 }

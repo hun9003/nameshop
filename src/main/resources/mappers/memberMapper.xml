@@ -88,4 +88,15 @@
                (SELECT count(cmt_id) FROM comment WHERE mem_id = #{mem_id} and cmt_close = 0) AS comment_write,
                (SELECT count(cmt_id) FROM comment WHERE mem_id = #{mem_id} and cmt_close = 1) AS comment_close
     </select>
+
+    <select id="getPost" resultType="post">
+        SELECT * FROM post WHERE mem_id = #{mem_id} AND post_del = 0 AND post_close = 0
+        ORDER BY post_datetime DESC
+    </select>
+
+    <select id="getCommentPost" resultType="post">
+        SELECT * FROM post JOIN comment ON post.post_id = comment.post_id
+        WHERE post.mem_id = #{mem_id} AND post.post_del = 0 AND post.post_close = 0
+        ORDER BY post.post_datetime DESC
+    </select>
 </mapper>

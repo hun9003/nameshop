@@ -2,13 +2,10 @@ package com.rateye.controller;
 
 
 import com.rateye.domain.*;
-import com.rateye.service.MemberService;
+import com.rateye.service.NotificationService;
 import com.rateye.service.PostService;
 import com.rateye.util.ScriptUtils;
 import com.rateye.util.StrResources;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +41,7 @@ import java.util.Map;
  *   2021.06.30     박진훈          최초 생성
  *   2021.07.05     박진훈         게시물 등록 구현
  *   2021.07.07     박진훈         이름 추천 구현
+ *   2021.07.13     박진훈         알림 기능 구현
  *
  * Copyright (C) 2021 by Rateye  All right reserved.
  * </pre>
@@ -55,6 +53,9 @@ public class ContentController {
 
     @Inject
     PostService postService;
+
+    @Inject
+    NotificationService notificationService;
 
     /**
      * 이름 추천 하기 페이지
@@ -334,6 +335,20 @@ public class ContentController {
             model.addAttribute("msg", StrResources.MSG_WRITE_FAIL);
         } else {
             postService.updateCommentCount(commentBean);
+
+            // 알림 전송
+            PostBean postBean = postService.getPost(post_id);
+            NotificationBean notificationBean = new NotificationBean();
+            notificationBean.setMem_id(postBean.getMem_id());
+            notificationBean.setTarget_mem_id(memberBean.getMem_id());
+            notificationBean.setNot_type("cmt");
+            notificationBean.setNot_content_id(post_id);
+            notificationBean.setNot_message("알림");
+            notificationBean.setNot_url("url");
+            notificationBean.setNot_datetime(new Timestamp(System.currentTimeMillis()));
+            notificationService.insertNotification(notificationBean);
+
+
             model.addAttribute("msg", StrResources.MSG_WRITE_SUCCESS);
             model.addAttribute("url", "/list?page="+page);
         }

@@ -35,6 +35,7 @@ public class StrResources {
     public static final String FORGET_PAGE = "/member/forget"; // 비밀번호 찾기 페이지
     public static final String CHANGE_PAGE = "/member/change-password"; // 비밀번호 설정 페이지
     public static final String NOTIFICATION_PAGE = "/member/notification"; // 알림 페이지
+    public static final String CONTENT_PAGE = "/member/content"; // 내 콘텐츠 페이지
 
     public static final String CONTENT_WRITE_PAGE = "/pages/content-write"; // 이름 추천 하기 페이지
     public static final String CONTENT_LIST_PAGE = "/pages/content-list"; // 이름 추천 리스트 페이지

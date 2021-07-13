@@ -65,7 +65,14 @@
                 <div class="header-social-icon d-inline-block">
                     <c:choose>
                         <c:when test="${sessionScope.member != null}">
-                            <a href="<c:url value="/my"/>" title="<spring:message code="title.profile"/>"><i class="fas fa-user"></i></a>
+                            <div class="header-cart-icon dropdown">
+                                <a href="javascript:void(0);"><i class="fas fa-user"></i></a>
+                                <ul class="dropdown-menu cart-item-list" style="min-width:150px;">
+                                    <li class="cart-item align-items-center"><a href="<c:url value="/my"/>" title="<spring:message code="title.profile"/>"><spring:message code="title.profile"/></a></li>
+                                    <li class="cart-item align-items-center"><a href="<c:url value="/noti"/>" title="내 알림">내 알림</a></li>
+                                    <li class="cart-item align-items-center"><a href="<c:url value="/my-content"/>" title="Content">내 콘텐츠</a></li>
+                                </ul>
+                            </div>
                             <div class="header-cart-icon dropdown">
                                 <a href="javascript:void(0);"><i class="fas fa-bell"></i><span class="cart-count alt-font bg-fast-blue text-white">0</span></a>
                                 <ul class="dropdown-menu cart-item-list">

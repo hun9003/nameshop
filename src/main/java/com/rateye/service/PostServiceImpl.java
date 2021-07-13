@@ -76,4 +76,10 @@ public class PostServiceImpl implements PostService {
 		System.out.println("PostServiceImpl - updateCommentCount()");
 		postDAO.updateCommentCount(commentBean);
 	}
+
+	@Override
+	public PostBean getPost(int post_id) {
+		System.out.println("PostServiceImpl - getPost()");
+		return postDAO.getPost(post_id);
+	}
 }

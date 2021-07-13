@@ -42,4 +42,6 @@ public interface PostService {
     int insertComment(CommentBean commentBean);
 
     void updateCommentCount(CommentBean commentBean);
+
+    PostBean getPost(int post_id);
 }

@@ -11,5 +11,9 @@
         <typeAlias alias="emailCode" type="com.rateye.domain.MemberAuthEmailBean"/>
         <!--  		게시물 -->
         <typeAlias alias="post" type="com.rateye.domain.PostBean"/>
+        <!--        이름 추천-->
+        <typeAlias alias="comment" type="com.rateye.domain.CommentBean"/>
+        <!--        알림-->
+        <typeAlias alias="notification" type="com.rateye.domain.NotificationBean"/>
 	</typeAliases>
  </configuration> 

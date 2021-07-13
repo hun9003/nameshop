@@ -78,4 +78,10 @@ public class PostDAOImpl implements PostDAO {
 		System.out.println("PostDAOImpl - updateCommentCount()");
 		sqlSession.update(namespace+".updateCommentCount", commentBean);
 	}
+
+	@Override
+	public PostBean getPost(int post_id) {
+		System.out.println("PostDAOImpl - getPost()");
+		return sqlSession.selectOne(namespace+".getPost", post_id);
+	}
 }

@@ -6,13 +6,11 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.rateye.domain.MailBean;
-import com.rateye.domain.MemberAuthEmailBean;
-import com.rateye.domain.MemberBean;
-import com.rateye.domain.MemberLoginLogBean;
+import com.rateye.domain.*;
 import com.rateye.util.LoginAPI;
 import com.rateye.util.ScriptUtils;
 import com.rateye.util.StrResources;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 회원 관리를 위한 컨트롤러 클래스
@@ -505,6 +504,31 @@ public class MemberController {
 
 
         return StrResources.NOTIFICATION_PAGE;
+    }
+
+    @RequestMapping(value = "/my-content", method = RequestMethod.GET)
+    public String content(Model model, HttpServletRequest request, HttpSession session) {
+        System.out.println("MemberController - content :: GET /my-content");
+        String title = "content"; // 내 콘텐츠
+
+        // 로그인 여부 확인
+        if (!StrResources.CHECK_LOGIN(session)) {
+            model.addAttribute("msg", StrResources.MSG_LOGIN_EMPTY);
+            model.addAttribute("url", "/login");
+            return StrResources.MESSAGE_PAGE;
+        }
+
+        // 회원 정보 저장
+        MemberBean memberBean = (MemberBean)session.getAttribute("member");
+
+        // 리스트 저장
+        List<PostBean> posts = memberService.getPost(memberBean);
+        List<PostBean> commentPosts = memberService.getCommentPost(memberBean);
+
+        model.addAttribute("posts", posts);
+        model.addAttribute("commentPosts", commentPosts);
+        model.addAttribute("title", title);
+        return StrResources.CONTENT_PAGE;
     }
 }
 
