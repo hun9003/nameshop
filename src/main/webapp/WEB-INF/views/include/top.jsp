@@ -33,5 +33,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/revolution/css/settings.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/revolution/css/layers.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/revolution/css/navigation.css"/>">
+
+    <script type="text/javascript" src="<c:url value="/resources/js/custom.js"/>"></script>
 </head>
 <body data-mobile-nav-style="classic">

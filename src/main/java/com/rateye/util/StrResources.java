@@ -32,6 +32,10 @@ public class StrResources {
     
     public static final String LOGIN_PAGE = "/member/login"; // 로그인 페이지
     public static final String PROFILE_PAGE = "/member/profile"; // 프로필 페이지
+    public static final String FORGET_PAGE = "/member/forget"; // 비밀번호 찾기 페이지
+    public static final String CHANGE_PAGE = "/member/change-password"; // 비밀번호 설정 페이지
+    public static final String NOTIFICATION_PAGE = "/member/notification"; // 알림 페이지
+    public static final String CONTENT_PAGE = "/member/content"; // 내 콘텐츠 페이지
 
     public static final String CONTENT_WRITE_PAGE = "/pages/content-write"; // 이름 추천 하기 페이지
     public static final String CONTENT_LIST_PAGE = "/pages/content-list"; // 이름 추천 리스트 페이지
@@ -47,6 +51,12 @@ public class StrResources {
     public static final String MSG_LOGIN_SUCCESS = "login_success"; // 로그인에 성공했습니다.
     public static final String MSG_LOGIN_FAIL = "login_fail"; // 아이디 혹은 비밀번호가 틀립니다.
     public static final String MSG_JOIN_SUCCESS = "join_success"; // 회원가입을 성공적으로 마쳤습니다.
+    public static final String MSG_LOGIN_EMPTY = "login_empty"; // 로그인이 필요한 시스템 입니다. 로그인 페이지로 이동합니다.
+    public static final String MSG_NOT_USE_CODE = "notUseCode"; // 인증이 유효하지 않습니다.
+    public static final String MSG_PASSWORD_CHANGE_SUCCESS = "password_change_success"; // 비밀번호 변경을 성공했습니다. 로그인 창으로 이동합니다.
+
+    public static final String MSG_WRITE_SUCCESS = "write_success"; // 이름 추천 등록을 완료했습니다.
+    public static final String MSG_WRITE_FAIL = "write_fail"; // 이름 추천 등록을 완료하지 못했습니다.
 
 //    =====================================  [   Message End   ]   =====================================
     public static boolean CHECK_LOGIN(HttpSession session) {

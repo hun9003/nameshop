@@ -10,26 +10,72 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!-- start footer -->
-<footer class="bg-extra-dark-gray padding-10-half-rem-tb md-padding-8-half-rem-tb footer-sticky">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-8 text-center">
-        <div class="social-icon-style-10 margin-3-half-rem-bottom">
-          <ul class="large-icon">
-            <li><a class="facebook text-white" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i><span></span></a></li>
-            <li><a class="dribbble text-white" href="http://www.dribbble.com" target="_blank"><i class="fab fa-dribbble"></i><span></span></a></li>
-            <li><a class="linkedin text-white" href="http://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i><span></span></a></li>
-            <li><a class="instagram text-white" href="http://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i><span></span></a></li>
-            <li><a class="behance text-white" href="http://www.behance.com/" target="_blank"><i class="fab fa-behance"></i><span></span></a></li>
-          </ul>
+<footer class="footer-dark bg-slate-blue">
+  <div class="footer-top padding-five-tb lg-padding-eight-tb md-padding-50px-tb">
+    <div class="container">
+      <div class="row">
+        <!-- start footer column -->
+        <div class="col-12 col-lg-12 col-sm-12 xs-margin-25px-bottom">
+          <span class="alt-font font-weight-500 d-block text-white margin-20px-bottom xs-margin-10px-bottom">Read Me</span>
+          <p class="w-85 margin-15px-bottom">&copy; 2021 지어뿌리 by Rateye</p>
+          <div><i class="feather icon-feather-phone-call icon-very-small margin-10px-right text-white"></i>010 4003 3892</div>
+          <div><i class="feather icon-feather-mail icon-very-small margin-10px-right text-white"></i><a href="#">jinhun3892@gmail.com</a></div>
         </div>
-        <h4 class="alt-font font-weight-300 margin-10px-bottom d-block letter-spacing-minus-2px">Representative Email</h4>
-        <h4 class="alt-font font-weight-600 margin-7-rem-bottom"><a href="mailto:info@domain.com" class="text-white text-decoration-line-bottom">jinhun3892@gmail.com</a></h4>
-        <p class="alt-font text-small text-uppercase m-0">&copy; 2021 지어뿌리 by <a href="https://www.themezaa.com/" target="_blank" class="text-decoration-line-bottom text-white">박진훈</a></p>
-      </div>
-    </div>
-  </div>
-</footer>
+        <!-- end footer column -->
+        <!-- start footer column -->
+<%--        <div class="col-12 col-lg-3 col-sm-6">--%>
+<%--          <span class="alt-font font-weight-500 d-block text-white margin-20px-bottom">Follow us on Instagram</span>--%>
+<%--          <div class="w-100 d-inline-block margin-10px-top">--%>
+<%--            <a class="alt-font text-extra-small text-uppercase font-weight-500 margin-20px-top d-inline-block" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram icon-extra-small align-middle margin-10px-right text-gradient-light-purple-light-orange"></i><span class="d-inline-block align-middle">Follow instagram</span></a>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--        <!-- end footer column -->--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--  </div>--%>
+<%--  <div class="footer-bottom padding-40px-tb border-top border-color-white-transparent">--%>
+<%--    <div class="container">--%>
+<%--      <div class="row align-items-center">--%>
+<%--        <div class="col-12 col-md-3 text-center text-md-left sm-margin-20px-bottom">--%>
+<%--          <a href="index.html" class="footer-logo"><img src="images/logo-white.png" data-at2x="images/logo-white@2x.png" alt=""></a>--%>
+<%--        </div>--%>
+<%--        <div class="col-12 col-md-6 text-center last-paragraph-no-margin sm-margin-20px-bottom">--%>
+<%--          <p>© 2021 Litho is Proudly Powered by <a href="https://www.themezaa.com/" target="_blank">ThemeZaa</a></p>--%>
+<%--        </div>--%>
+<%--        <div class="col-12 col-md-3 text-center text-md-right">--%>
+<%--          <div class="social-icon-style-12">--%>
+<%--            <ul class="extra-small-icon light">--%>
+<%--              <li><a class="facebook" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>--%>
+<%--              <li><a class="dribbble" href="http://www.dribbble.com" target="_blank"><i class="fab fa-dribbble"></i></a></li>--%>
+<%--              <li><a class="twitter" href="http://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>--%>
+<%--              <li><a class="instagram" href="http://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>--%>
+<%--            </ul>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--  </div>--%>
+<%--</footer>--%>
+<%--<footer class="bg-extra-dark-gray padding-10-half-rem-tb md-padding-8-half-rem-tb footer-sticky">--%>
+<%--  <div class="container">--%>
+<%--    <div class="row justify-content-center">--%>
+<%--      <div class="col-12 col-lg-8 text-center">--%>
+<%--        <div class="social-icon-style-10 margin-3-half-rem-bottom">--%>
+<%--          <ul class="large-icon">--%>
+<%--            <li><a class="facebook text-white" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i><span></span></a></li>--%>
+<%--            <li><a class="dribbble text-white" href="http://www.dribbble.com" target="_blank"><i class="fab fa-dribbble"></i><span></span></a></li>--%>
+<%--            <li><a class="linkedin text-white" href="http://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i><span></span></a></li>--%>
+<%--            <li><a class="instagram text-white" href="http://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i><span></span></a></li>--%>
+<%--            <li><a class="behance text-white" href="http://www.behance.com/" target="_blank"><i class="fab fa-behance"></i><span></span></a></li>--%>
+<%--          </ul>--%>
+<%--        </div>--%>
+<%--        <h4 class="alt-font font-weight-300 margin-10px-bottom d-block letter-spacing-minus-2px">Representative Email</h4>--%>
+<%--        <h4 class="alt-font font-weight-600 margin-7-rem-bottom"><a href="mailto:info@domain.com" class="text-white text-decoration-line-bottom">jinhun3892@gmail.com</a></h4>--%>
+<%--        <p class="alt-font text-small text-uppercase m-0">&copy; 2021 지어뿌리 by Rateye</p>--%>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--  </div>--%>
+<%--</footer>--%>
 <!-- end footer -->
 <!-- start scroll to top -->
 <a class="scroll-top-arrow" href="javascript:void(0);"><i class="feather icon-feather-arrow-up"></i></a>
@@ -53,6 +99,7 @@
 <script type="text/javascript" src="<c:url value="/resources/revolution/js/extensions/revolution.extension.parallax.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/revolution/js/extensions/revolution.extension.slideanims.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/revolution/js/extensions/revolution.extension.video.min.js"/>"></script>
+
 
 <script type="text/javascript">
   var revapi266,

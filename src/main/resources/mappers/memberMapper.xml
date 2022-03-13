@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rateye.mapper.MemberMapper">
+    <!--    회원 정보 호출-->
+    <select id="getMember" resultType="member">
+        SELECT * FROM member WHERE mem_email = #{mem_email}
+    </select>
     <!-- 아이디 중복체크 -->
     <select id="getMember_email" resultType="member">
         SELECT mem_id FROM member WHERE mem_email = #{mem_email}
@@ -37,7 +41,7 @@
 
     <!--	이메일 코드 재전송-->
     <update id="updateMemberEmailCode">
-        UPDATE member_auth_email SET mae_key = #{mae_key}, mae_generate_datetime = #{mae_generate_datetime} WHERE mem_email = #{mem_email}
+        UPDATE member_auth_email SET mae_key = #{mae_key}, mae_type = #{mae_type}, mae_generate_datetime = #{mae_generate_datetime} WHERE mem_email = #{mem_email}
     </update>
 
     <!--	이메일 인증 완료-->
@@ -52,7 +56,7 @@
 
     <!-- 로그인 유효성 검사 -->
     <select id="checkMember" resultType="member">
-        SELECT mem_id FROM member WHERE mem_email = #{mem_email} AND mem_password = #{mem_password}
+        SELECT * FROM member WHERE mem_email = #{mem_email} AND mem_password = #{mem_password}
     </select>
 
     <!--	로그인 로그-->
@@ -65,4 +69,34 @@
     <update id="updateLoginMember">
         UPDATE member SET mem_lastlogin_datetime = #{mem_lastlogin_datetime}, mem_lastlogin_ip = #{mem_lastlogin_ip} WHERE mem_id = #{mem_id}
     </update>
+
+<!--    이메일 코드 사용 여부 확인-->
+    <select id="checkUseCode" resultType="emailCode">
+        SELECT * FROM member_auth_email WHERE mem_email = #{mem_email} AND
+                                              mae_type = #{mae_type} AND
+                                              mae_expired = #{mae_expired}
+    </select>
+
+<!--    비밀번호 변경-->
+    <update id="updatePassword">
+        UPDATE member SET mem_password = #{mem_password} WHERE mem_email = #{mem_email}
+    </update>
+
+    <select id="getMemberWrite" resultType="hashmap">
+        SELECT (SELECT count(post_id) FROM post WHERE mem_id = #{mem_id} and post_close = 0) AS post_write,
+               (SELECT count(post_id) FROM post WHERE mem_id = #{mem_id} and post_close = 1) AS post_close,
+               (SELECT count(cmt_id) FROM comment WHERE mem_id = #{mem_id} and cmt_close = 0) AS comment_write,
+               (SELECT count(cmt_id) FROM comment WHERE mem_id = #{mem_id} and cmt_close = 1) AS comment_close
+    </select>
+
+    <select id="getPost" resultType="post">
+        SELECT * FROM post WHERE mem_id = #{mem_id} AND post_del = 0 AND post_close = 0
+        ORDER BY post_datetime DESC
+    </select>
+
+    <select id="getCommentPost" resultType="post">
+        SELECT * FROM post JOIN comment ON post.post_id = comment.post_id
+        WHERE post.mem_id = #{mem_id} AND post.post_del = 0 AND post.post_close = 0
+        ORDER BY post.post_datetime DESC
+    </select>
 </mapper>

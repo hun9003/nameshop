@@ -4,6 +4,10 @@ package com.rateye.dao;
 import com.rateye.domain.MemberAuthEmailBean;
 import com.rateye.domain.MemberBean;
 import com.rateye.domain.MemberLoginLogBean;
+import com.rateye.domain.PostBean;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 회원 관리를 위한 DAO 인터페이스
@@ -49,4 +53,16 @@ public interface MemberDAO {
     void insertLog(MemberLoginLogBean memberLoginLogBean);
 
     int updateLoginMember(MemberBean memberCheck);
+
+    MemberAuthEmailBean checkUseCode(MemberAuthEmailBean memberAuthEmailBean);
+
+    MemberBean getMember(String mem_email);
+
+    int updatePassword(MemberBean memberBean);
+
+    HashMap<String, Integer> getMemberWrite(int mem_id);
+
+    List<PostBean> getPost(MemberBean memberBean);
+
+    List<PostBean> getCommentPost(MemberBean memberBean);
 }

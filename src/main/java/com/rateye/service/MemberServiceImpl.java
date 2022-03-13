@@ -5,11 +5,14 @@ import javax.inject.Inject;
 import com.rateye.domain.MemberAuthEmailBean;
 import com.rateye.domain.MemberBean;
 import com.rateye.domain.MemberLoginLogBean;
+import com.rateye.domain.PostBean;
 import org.springframework.stereotype.Service;
 
 import com.rateye.dao.MemberDAO;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 회원 관리를 위한 서비스 클래스
@@ -107,5 +110,41 @@ public class MemberServiceImpl implements MemberService {
 	public int updateLoginMember(MemberBean memberCheck) {
 		System.out.println("MemberServiceImpl - updateLoginMember()");
 		return memberDAO.updateLoginMember(memberCheck);
+	}
+
+	@Override
+	public MemberAuthEmailBean checkUseCode(MemberAuthEmailBean memberAuthEmailBean) {
+		System.out.println("MemberServiceImpl - checkUseCode()");
+		return memberDAO.checkUseCode(memberAuthEmailBean);
+	}
+
+	@Override
+	public MemberBean getMember(String mem_email) {
+		System.out.println("MemberServiceImpl - getMember()");
+		return memberDAO.getMember(mem_email);
+	}
+
+	@Override
+	public int updatePassword(MemberBean memberBean) {
+		System.out.println("MemberServiceImpl - updatePassword()");
+		return memberDAO.updatePassword(memberBean);
+	}
+
+	@Override
+	public HashMap<String, Integer> getMemberWrite(int mem_id) {
+		System.out.println("MemberServiceImpl - getMemberWrite()");
+		return memberDAO.getMemberWrite(mem_id);
+	}
+
+	@Override
+	public List<PostBean> getPost(MemberBean memberBean) {
+		System.out.println("MemberServiceImpl - getPost()");
+		return memberDAO.getPost(memberBean);
+	}
+
+	@Override
+	public List<PostBean> getCommentPost(MemberBean memberBean) {
+		System.out.println("MemberServiceImpl - getCommentPost()");
+		return memberDAO.getCommentPost(memberBean);
 	}
 }

@@ -11,7 +11,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!-- start header -->
 <header>
-    <nav class="navbar top-space navbar-expand-lg navbar-light bg-transparent header-light fixed-top navbar-boxed header-reverse-scroll">
+    <nav class="navbar top-space navbar-expand-lg navbar-light bg-white header-light fixed-top header-reverse-scroll navbar-boxed">
         <div class="container-fluid nav-header-container">
             <div class="col-5 col-lg-2 pl-lg-0 mr-auto mr-lg-0">
                 <a class="navbar-brand" href="<c:url value="/"/>">
@@ -21,12 +21,6 @@
                 </a>
             </div>
             <div class="col-auto col-lg-8 md-position-initial md-no-padding">
-                <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-line"></span>
-                    <span class="navbar-toggler-line"></span>
-                    <span class="navbar-toggler-line"></span>
-                    <span class="navbar-toggler-line"></span>
-                </button>
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav alt-font">
                         <li class="nav-item dropdown megamenu">
@@ -69,8 +63,61 @@
             </div>
             <div class="col-auto col-lg-2 text-right hidden-xs px-lg-0">
                 <div class="header-social-icon d-inline-block">
-                    <a href="<c:url value="/my"/>"><i class="fas fa-user"></i></a>
-                    <a href="<c:url value="/login"/>"><i class="fas fa-sign-in-alt"></i></a>
+                    <c:choose>
+                        <c:when test="${sessionScope.member != null}">
+                            <div class="header-cart-icon dropdown">
+                                <a href="javascript:void(0);"><i class="fas fa-user"></i></a>
+                                <ul class="dropdown-menu cart-item-list" style="min-width:150px;">
+                                    <li class="cart-item align-items-center"><a href="<c:url value="/my"/>" title="<spring:message code="title.profile"/>"><spring:message code="title.profile"/></a></li>
+                                    <li class="cart-item align-items-center"><a href="<c:url value="/noti"/>" title="내 알림">내 알림</a></li>
+                                    <li class="cart-item align-items-center"><a href="<c:url value="/my-content"/>" title="Content">내 콘텐츠</a></li>
+                                </ul>
+                            </div>
+                            <div class="header-cart-icon dropdown">
+                                <a href="javascript:void(0);"><i class="fas fa-bell"></i><span class="cart-count alt-font bg-fast-blue text-white">0</span></a>
+                                <ul class="dropdown-menu cart-item-list">
+                                    <li class="cart-item align-items-center">
+                                        <a href="javascript:void(0);" class="alt-font close">×</a>
+                                        <div class="product-detail alt-font">
+                                            <a href="single-product.html">새로운 이름 추천이 있습니다</a>
+                                            <span class="item-ammount">실험용3asdasdasdasdasfasdfsdfsdfsaddfsdafasdasdasdasdasdsadsdfsd</span>
+                                        </div>
+                                    </li>
+                                    <li class="cart-item align-items-center">
+                                        <a href="javascript:void(0);" class="alt-font close">×</a>
+                                        <div class="product-detail alt-font">
+                                            <a href="single-product.html">새로운 이름 추천이 있습니다</a>
+                                            <span class="item-ammount">실험용3</span>
+                                        </div>
+                                    </li>
+                                    <li class="cart-item cart-total">
+                                        <a href="<c:url value="/noti"/>" class="btn btn-small btn-dark-gray">전체 보기</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#logout-box" class="popup-with-form" title="<spring:message code="title.logout"/>"><i class="fas fa-sign-out-alt"></i></a>
+                            <!-- start logout message -->
+                            <div id="logout-box" class="white-popup-block col-xl-4 col-lg-7 col-sm-9 p-0 mx-auto mfp-hide">
+                                <div class="padding-fifteen-all bg-white border-radius-6px xs-padding-six-all">
+                                    <h6 class="text-extra-dark-gray font-weight-500 margin-35px-bottom xs-margin-15px-bottom"><spring:message code="content.member.logout"/></h6>
+                                    <div>
+                                        <a href="<c:url value="/logout"/>" class="btn btn-medium btn-fancy btn-dark-gray w-100"><spring:message code="button.member.logout"/></a>
+                                        <div class="form-results d-none"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end logout message -->
+                        </c:when>
+                        <c:otherwise>
+                            <a href="<c:url value="/login"/>" title="<spring:message code="title.login"/>"><i class="fas fa-sign-in-alt"></i></a>
+                        </c:otherwise>
+                    </c:choose>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-line"></span>
+                        <span class="navbar-toggler-line"></span>
+                        <span class="navbar-toggler-line"></span>
+                        <span class="navbar-toggler-line"></span>
+                    </button>
                 </div>
             </div>
         </div>

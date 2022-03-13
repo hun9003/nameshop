@@ -19,7 +19,7 @@
 <!--	<property name="password" value="pjhoon" />-->
 	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="url" value="jdbc:log4jdbc:mariadb://rateye.czjva1yye6rt.us-east-2.rds.amazonaws.com:3306/nameshop" />
+		<property name="url" value="jdbc:log4jdbc:mariadb://nameshop.cxrxabuqxnkd.ap-northeast-2.rds.amazonaws.com:3306/nameshop" />
 		<property name="username" value="rateye" />
 		<property name="password" value="wlsgns12" />
 	</bean>

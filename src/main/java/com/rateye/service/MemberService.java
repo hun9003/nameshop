@@ -3,7 +3,9 @@ package com.rateye.service;
 import com.rateye.domain.MemberAuthEmailBean;
 import com.rateye.domain.MemberBean;
 import com.rateye.domain.MemberLoginLogBean;
+import com.rateye.domain.PostBean;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,4 +53,16 @@ public interface MemberService {
     void insertLog(MemberLoginLogBean memberLoginLogBean);
 
     int updateLoginMember(MemberBean memberCheck);
+
+    MemberAuthEmailBean checkUseCode(MemberAuthEmailBean memberAuthEmailBean);
+
+    MemberBean getMember(String mem_email);
+
+    int updatePassword(MemberBean memberBean);
+
+    HashMap<String, Integer> getMemberWrite(int mem_id);
+
+    List<PostBean> getPost(MemberBean memberBean);
+
+    List<PostBean> getCommentPost(MemberBean memberBean);
 }
